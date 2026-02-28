@@ -55,11 +55,12 @@
   <script>
     const colourMap = {
       Yw: "#fcff54 #8d8f25",
-      Red: "#FF0000 #330000",
-      Blue: "#0080FF #001933",
-      Purple: "#A020F0 #2A004D",
-      Orange: "#FFA500 #4A2E00",
-      Gold: "#FFD700 #5A4B00"
+      Rd: "#ff8f82 #a63a2e",
+      Gn: "#8aff90 #29752d"
+    };
+
+    const columnColourMap = {
+      "Image": "#919191 #ffffff"
     };
   </script>
 
@@ -83,6 +84,8 @@
         const lines = text.trim().split("\n");
         const table = document.getElementById("blockTable");
 
+        let headers = [];
+
         lines.forEach((line, index) => {
           const row = document.createElement("tr");
           const cells = line.split(",");
@@ -94,16 +97,30 @@
             cells.pop(); // remove colour column so it isn't displayed
           }
 
-          // Apply row colours if valid
+          // Apply row colour if named colour exists
           if (colourName && colourMap[colourName]) {
             const [bg, textColor] = colourMap[colourName].split(" ");
             row.style.backgroundColor = bg;
             row.style.color = textColor;
           }
 
-          cells.forEach(cell => {
+          // Store headers on first row
+          if (index === 0) {
+            headers = cells;
+          }
+
+          cells.forEach((cell, colIndex) => {
             const cellElement = document.createElement(index === 0 ? "th" : "td");
 
+            // Apply column‑based colour rule
+            const headerName = headers[colIndex];
+            if (columnColourMap[headerName]) {
+              const [bg, textColor] = columnColourMap[headerName].split(" ");
+              cellElement.style.backgroundColor = bg;
+              cellElement.style.color = textColor;
+            }
+
+            // Image detection
             if (cell.startsWith("http://") || cell.startsWith("https://")) {
               const img = document.createElement("img");
               img.src = cell;
