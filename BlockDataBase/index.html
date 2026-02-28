@@ -40,6 +40,13 @@
       padding: 8px;
       font-size: 18px;
       text-align: left;
+      vertical-align: middle; /* ensures vertical centering */
+    }
+
+    /* Center images inside cells */
+    td img, th img {
+      display: block;
+      margin: auto;
     }
   </style>
 </head>
@@ -72,12 +79,10 @@
             if (cell.startsWith("http://") || cell.startsWith("https://")) {
               const img = document.createElement("img");
               img.src = cell;
-
-              /* FIXED: images now fit without stretching */
-              img.style.maxWidth = "50px";
+              img.loading = "lazy";          // lazy loading
+              img.style.maxWidth = "50px";   // keep proportions
               img.style.maxHeight = "50px";
-              img.style.objectFit = "contain";
-
+              img.style.objectFit = "contain"; // no stretching
               cellElement.appendChild(img);
             } else {
               cellElement.textContent = cell;
