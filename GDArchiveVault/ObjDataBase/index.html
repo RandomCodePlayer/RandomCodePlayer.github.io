@@ -67,21 +67,29 @@
   <a href="https://randomcodeplayer.github.io/GDArchiveVault/">Back</a>
   <h1>Object Data</h1>
   <p>Here is the data for every object in Geometry Dash!<br>You can click the links below for the objects from specific updates.</p>
-  <a href="Upd1.0">1.0 Objects</a>
-  <a href="Upd1.1">1.1 Objects</a>
-  <a href="Upd1.2">1.2 Objects</a>
-  <a href="Upd1.3">1.3 Objects</a>
-  <a href="Upd1.4">1.4 Objects</a>
-  <a href="Upd1.5">1.5 Objects</a>
-  <a href="Upd1.6">1.6 Objects</a>
-  <a href="Upd1.7">1.7 Objects</a>
-  <a href="Upd1.8">1.8 Objects</a>
-  <a href="Upd1.9">1.9 Objects</a>
-  <a href="Upd2.0">2.0 Objects</a>
-  <a href="Upd2.1">2.1 Objects</a>
-  <a href="Upd2.2">2.2 Objects</a>
-  
-  <table id="blockTable"></table>
+  <div class="layout">
+
+    <!-- TABLE -->
+    <table id="blockTable"></table>
+
+    <!-- RIGHT SIDE LINKS -->
+    <div class="right-links">
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.0/">1.0 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.1/">1.1 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.2/">1.2 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.3/">1.3 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.4/">1.4 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.5/">1.5 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.6/">1.6 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.7/">1.7 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.8/">1.8 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.9/">1.9 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd2.0/">2.0 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd2.1/">2.1 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd2.2/">2.2 Objects</a>
+    </div>
+
+  </div>
 
   <script>
     async function loadBlockData() {
@@ -100,21 +108,18 @@
           const row = document.createElement("tr");
           const cells = line.split(",");
 
-          // Detect optional Colour column
           let colourName = null;
           if (cells.length > 5) {
             colourName = cells[cells.length - 1].trim();
-            cells.pop(); // remove colour column so it isn't displayed
+            cells.pop();
           }
 
-          // Apply row colour if named colour exists
           if (colourName && colourMap[colourName]) {
             const [bg, textColor] = colourMap[colourName].split(" ");
             row.style.backgroundColor = bg;
             row.style.color = textColor;
           }
 
-          // Store headers on first row
           if (index === 0) {
             headers = cells;
           }
@@ -122,7 +127,6 @@
           cells.forEach((cell, colIndex) => {
             const cellElement = document.createElement(index === 0 ? "th" : "td");
 
-            // Apply column‑based colour rule
             const headerName = headers[colIndex];
             if (columnColourMap[headerName]) {
               const [bg, textColor] = columnColourMap[headerName].split(" ");
@@ -130,7 +134,6 @@
               cellElement.style.color = textColor;
             }
 
-            // Image detection
             if (cell.startsWith("http://") || cell.startsWith("https://")) {
               const img = document.createElement("img");
               img.src = cell;
