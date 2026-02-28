@@ -1,5 +1,5 @@
 ID,First Added In,First Seen In,Block Type,Image
-1,1.0,1.0,Block,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/BlockDataBase/Blocks/1.png
+1,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/0/01/RegularBlock01.png/revision/latest?cb=20160604070948
 2,1.0,1.0,Block,
 3,1.0,1.0,Block,
 4,1.0,1.0,Block,
