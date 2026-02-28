@@ -1,80 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>GD Object Data</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      text-align: left;
-    }
-    h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 20px;
-      margin: 6px 0;
-    }
-    a {
-      font-size: 20px;
-      color: #0078ff;
-      text-decoration: none;
-      margin: 6px 0;
-      display: block;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    table {
-      margin-top: 20px;
-      border-collapse: collapse;
-      width: 400px;
-    }
-    table, th, td {
-      border: 1px solid #000;
-    }
-    th, td {
-      padding: 8px;
-      font-size: 18px;
-      text-align: left;
-    }
-  </style>
-</head>
-<body>
+<h2>Block Data</h2>
 
-  <h1>Object Data</h1>
-  <a href="Update_1.0">Download Android Version</a>
-  <p>Geometry Dash is Released on IOS</p>
-  <p>Geometry Dash is Released on Android</p>
+<table id="blockTable">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Added In</th>
+      <th>First Seen In</th>
+      <th>Block Type</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 
-  <table>
-    <tr>
-      <th>Header 1</th>
-      <th>Header 2</th>
-      <th>Header 3</th>
-      <th>Header 4</th>
-    </tr>
-    <tr>
-      <td>Row 1 Col 1</td>
-      <td>Row 1 Col 2</td>
-      <td>Row 1 Col 3</td>
-      <td>Row 1 Col 4</td>
-    </tr>
-    <tr>
-      <td>Row 2 Col 1</td>
-      <td>Row 2 Col 2</td>
-      <td>Row 2 Col 3</td>
-      <td>Row 2 Col 4</td>
-    </tr>
-    <tr>
-      <td>Row 3 Col 1</td>
-      <td>Row 3 Col 2</td>
-      <td>Row 3 Col 3</td>
-      <td>Row 3 Col 4</td>
-    </tr>
-  </table>
+<script>
+  async function loadBlockData() {
+    const url = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/Data/BlockData.txt";
 
-</body>
-</html>
+    try {
+      const response = await fetch(url);
+      const text = await response.text();
+
+      const rows = text.trim().split("\n");
+      const tbody = document.querySelector("#blockTable tbody");
+
+      rows.forEach(line => {
+        const parts = line.split(",");
+
+        // Expecting: ID,First Added In,First Seen In,Block Type,Image
+        const tr = document.createElement("tr");
+
+        // First 4 columns are text
+        for (let i = 0; i < 4; i++) {
+          const td = document.createElement("td");
+          td.textContent = parts[i] || "";
+          tr.appendChild(td);
+        }
+
+        // 5th column is an image
+        const imgTd = document.createElement("td");
+        if (parts[4]) {
+          const img = document.createElement("img");
+          img.src = parts[4];
+          img.style.width = "50px";
+          img.style.height = "50px";
+          imgTd.appendChild(img);
+        }
+        tr.appendChild(imgTd);
+
+        tbody.appendChild(tr);
+      });
+
+    } catch (err) {
+      console.error("Failed to load block data:", err);
+    }
+  }
+
+  loadBlockData();
+</script>
