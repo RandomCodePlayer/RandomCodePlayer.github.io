@@ -1,13 +1,13 @@
 ID,First Added In,First Seen In,Block Type,Image
 1,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/0/01/RegularBlock01.png/revision/latest?cb=20160604070948
-2,1.0,1.0,Block,
-3,1.0,1.0,Block,
-4,1.0,1.0,Block,
-5,1.0,1.0,Decoration,
-6,1.0,1.0,Block,
-7,1.0,1.0,Block,
-8,1.0,1.0,Hazard,
-9,1.0,1.0,Hazard,
+2,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/6/6c/GridBlock02.png/revision/latest?cb=20160515081423
+3,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/c/c3/GridBlock03.png/revision/latest?cb=20160515081423
+4,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/a/a3/GridBlock04.png/revision/latest?cb=20160515081423
+5,1.0,1.0,Decoration,https://static.wikia.nocookie.net/geometry-dash/images/4/4e/GridBlock05.png/revision/latest?cb=20160515081424
+6,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/c/c1/GridBlock07.png/revision/latest?cb=20160515081424
+7,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/c/cb/GridBlock08.png/revision/latest?cb=20160515081424
+8,1.0,1.0,Hazard,https://static.wikia.nocookie.net/geometry-dash/images/8/8a/RegularSpike01.png/revision/latest?cb=20160604071118
+9,1.0,1.0,Hazard,https://static.wikia.nocookie.net/geometry-dash/images/c/c4/ThornPit01.png/revision/latest?cb=20160705135205
 10,1.0,1.0,Portal,
 11,1.0,1.0,Portal,
 12,1.0,1.0,Portal,
