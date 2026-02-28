@@ -8,10 +8,10 @@ ID,First Added In,First Seen In,Block Type,Image
 7,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/c/cb/GridBlock08.png/revision/latest?cb=20160515081424
 8,1.0,1.0,Hazard,https://static.wikia.nocookie.net/geometry-dash/images/8/8a/RegularSpike01.png/revision/latest?cb=20160604071118
 9,1.0,1.0,Hazard,https://static.wikia.nocookie.net/geometry-dash/images/c/c4/ThornPit01.png/revision/latest?cb=20160705135205
-10,1.0,1.0,Portal,
-11,1.0,1.0,Portal,
-12,1.0,1.0,Portal,
-13,1.0,1.0,Portal,
+10,1.0,1.0,Portal,https://static.wikia.nocookie.net/geometry-dash/images/0/0e/GravityPortalBLabelled.png/revision/latest?cb=20240127182555
+11,1.0,1.0,Portal,https://static.wikia.nocookie.net/geometry-dash/images/0/00/GravityPortalALabelled.png/revision/latest?cb=20240127182626
+12,1.0,1.0,Portal,https://static.wikia.nocookie.net/geometry-dash/images/b/bf/CubePortalLabelled.png/revision/latest?cb=20240126172523
+13,1.0,1.0,Portal,https://static.wikia.nocookie.net/geometry-dash/images/4/4a/ShipPortalLabelled.png/revision/latest?cb=20240126171032
 14,Never,Never,N/A,
 15,1.0,1.0,Decoration,
 16,1.0,1.0,Decoration,
