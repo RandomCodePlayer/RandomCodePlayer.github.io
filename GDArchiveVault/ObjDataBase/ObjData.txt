@@ -1,4 +1,4 @@
-ID,First Added In,First Seen In,Block Type,Image
+ID,First Added,First Listed,Object Type,Image
 1,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/0/01/RegularBlock01.png/revision/latest?cb=20160604070948
 2,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/6/6c/GridBlock02.png/revision/latest?cb=20160515081423
 3,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/c/c3/GridBlock03.png/revision/latest?cb=20160515081423
