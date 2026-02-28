@@ -1,0 +1,2 @@
+ID,First Added,First Listed,Object Type,Image,Color
+47,1.11,1.2,Portal,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/47.webp,Gn
