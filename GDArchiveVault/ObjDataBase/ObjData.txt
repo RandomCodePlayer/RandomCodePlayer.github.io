@@ -1,4 +1,4 @@
-ID,First Added,First Listed,Object Type,Image
+ID,First Added,First Listed,Object Type,Image,Color
 1,1.0,1.0,Block,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/1.webp
 2,1.0,1.0,Block,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/2.webp
 3,1.0,1.0,Block,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/3.webp
@@ -32,7 +32,7 @@ ID,First Added,First Listed,Object Type,Image
 31,1.0,1.0,Trigger,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/31.webp
 32,1.0,1.0,Trigger,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/32.webp
 33,1.0,1.0,Trigger,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/33.webp
-34,1.0,Never,Block,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/34.webp
+34,1.0,Never,Block,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/34.webp,Yw
 35,1.0,1.0,Pad,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/35.webp
 36,1.0,1.0,Orb,https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjImages/36.webp
 37,Never,Never,N/A,
