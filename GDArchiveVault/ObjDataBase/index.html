@@ -50,6 +50,19 @@
   </style>
 </head>
 <body>
+
+  <!-- Secret colour definitions -->
+  <script>
+    const colourMap = {
+      Green: "#00FF00 #003300",
+      Red: "#FF0000 #330000",
+      Blue: "#0080FF #001933",
+      Purple: "#A020F0 #2A004D",
+      Orange: "#FFA500 #4A2E00",
+      Gold: "#FFD700 #5A4B00"
+    };
+  </script>
+
   <a href="https://randomcodeplayer.github.io/GDArchiveVault/">Back</a>
   <h1>Object Data</h1>
   <p>Here is the data for every object in Geometry Dash!<br>You can click the links below for the objects from specific updates.</p>
@@ -73,6 +86,20 @@
         lines.forEach((line, index) => {
           const row = document.createElement("tr");
           const cells = line.split(",");
+
+          // Detect optional Colour column
+          let colourName = null;
+          if (cells.length > 5) {
+            colourName = cells[cells.length - 1].trim();
+            cells.pop(); // remove colour column so it isn't displayed
+          }
+
+          // Apply row colours if valid
+          if (colourName && colourMap[colourName]) {
+            const [bg, textColor] = colourMap[colourName].split(" ");
+            row.style.backgroundColor = bg;
+            row.style.color = textColor;
+          }
 
           cells.forEach(cell => {
             const cellElement = document.createElement(index === 0 ? "th" : "td");
