@@ -37,8 +37,12 @@ ID,First Added In,First Seen In,Block Type,Image
 36,1.0,1.0,Orb,https://static.wikia.nocookie.net/geometry-dash/images/1/12/YellowJumpRing.png/revision/latest?cb=20240127012213
 37,Never,Never,N/A,
 38,Never,Never,N/A,
-39,1.0,1.0,Hazard,
-40,1.0,1.0,Block,
-41,1.0,1.0,Decoration,
+39,1.0,1.0,Hazard,https://static.wikia.nocookie.net/geometry-dash/images/3/3b/RegularSpike02.png/revision/latest?cb=20160603071759
+40,1.0,1.0,Block,https://static.wikia.nocookie.net/geometry-dash/images/d/d4/RegularPlatform01.png/revision/latest?cb=20160520162208
+41,1.0,1.0,Decoration,https://static.wikia.nocookie.net/geometry-dash/images/e/e8/ChainDecor01.png/revision/latest?cb=20160924092442
 42,1.0,Never,Decoration,https://static.wikia.nocookie.net/geometry-dash/images/3/38/BackgroundEffectOffTrigger.png/revision/latest?cb=20240201151501
 43,1.0,Never,Decoration,https://static.wikia.nocookie.net/geometry-dash/images/a/ad/BackgroundEffectOnTrigger.png/revision/latest?cb=20240201151508
+44,Never,Never,N/A,https://static.wikia.nocookie.net/geometry-dash/images/b/b6/Checkpoint.png/revision/latest?cb=20240115141648
+45,1.02,1.1,Portal,https://static.wikia.nocookie.net/geometry-dash/images/e/e7/MirrorPortalA.png/revision/latest?cb=20240126204202
+46,1.02,1.1,Portal,https://static.wikia.nocookie.net/geometry-dash/images/f/f0/MirrorPortalB.png/revision/latest?cb=20240126204254
+47,1.11,1.2,Portal,https://static.wikia.nocookie.net/geometry-dash/images/f/f7/BallPortalLabelled.png/revision/latest?cb=20240126154638
