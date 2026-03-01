@@ -27,7 +27,6 @@
     a:hover {
       text-decoration: underline;
     }
-
     table {
       margin-top: 20px;
       border-collapse: collapse;
@@ -42,19 +41,15 @@
       text-align: left;
       vertical-align: middle;
     }
-
     td img, th img {
       display: block;
       margin: auto;
     }
-
-    /* FIX: Make table + links appear side-by-side */
     .layout {
       display: flex;
       gap: 40px;
       align-items: flex-start;
     }
-
     .right-links {
       min-width: 200px;
     }
@@ -62,14 +57,12 @@
 </head>
 <body>
 
-  <!-- Secret colour definitions -->
   <script>
     const colourMap = {
       Yw: "#fcff54 #8d8f25",
       Rd: "#ff8f82 #a63a2e",
       Gn: "#8aff90 #29752d"
     };
-
     const columnColourMap = {
       "Image": "#919191 #ffffff"
     };
@@ -81,10 +74,8 @@
 
   <div class="layout">
 
-    <!-- TABLE -->
     <table id="blockTable"></table>
 
-    <!-- RIGHT SIDE LINKS -->
     <div class="right-links">
       <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.0/">1.0 Objects</a>
       <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.1/">1.1 Objects</a>
@@ -106,46 +97,36 @@
   <script>
     async function loadBlockData() {
       const url = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/ObjData.txt";
-
       try {
         const response = await fetch(url);
         const text = await response.text();
-
         const lines = text.trim().split("\n");
         const table = document.getElementById("blockTable");
-
         let headers = [];
-
         lines.forEach((line, index) => {
           const row = document.createElement("tr");
           const cells = line.split(",");
-
           let colourName = null;
           if (cells.length > 5) {
             colourName = cells[cells.length - 1].trim();
             cells.pop();
           }
-
           if (colourName && colourMap[colourName]) {
             const [bg, textColor] = colourMap[colourName].split(" ");
             row.style.backgroundColor = bg;
             row.style.color = textColor;
           }
-
           if (index === 0) {
             headers = cells;
           }
-
           cells.forEach((cell, colIndex) => {
             const cellElement = document.createElement(index === 0 ? "th" : "td");
-
             const headerName = headers[colIndex];
             if (columnColourMap[headerName]) {
               const [bg, textColor] = columnColourMap[headerName].split(" ");
               cellElement.style.backgroundColor = bg;
               cellElement.style.color = textColor;
             }
-
             if (cell.startsWith("http://") || cell.startsWith("https://")) {
               const img = document.createElement("img");
               img.src = cell;
@@ -157,18 +138,14 @@
             } else {
               cellElement.textContent = cell;
             }
-
             row.appendChild(cellElement);
           });
-
           table.appendChild(row);
         });
-
       } catch (err) {
         console.error("Error loading block data:", err);
       }
     }
-
     loadBlockData();
   </script>
 
