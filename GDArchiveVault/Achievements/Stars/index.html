@@ -53,7 +53,28 @@
 <div id="container"></div>
 
 <script>
-const dataURL = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/Stars/Data.txt";
+const dataURL = "YOUR_DATA_FILE_URL_HERE";
+
+function parseCSVLine(line) {
+    const result = [];
+    let current = "";
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') {
+            inQuotes = !inQuotes;
+        } else if (c === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = "";
+        } else {
+            current += c;
+        }
+    }
+    if (current.length > 0) {
+        result.push(current.trim());
+    }
+    return result;
+}
 
 fetch(dataURL)
     .then(r => r.text())
@@ -61,7 +82,7 @@ fetch(dataURL)
         const lines = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
 
         const items = lines.map(line => {
-            const parts = line.split(",").map(p => p.trim());
+            const parts = parseCSVLine(line);
             return {
                 img: parts[0],
                 big: parts[1],
