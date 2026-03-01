@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>GD Level Version Converter</title>
+<title>GD Block Filter Tool</title>
 
 <style>
 body {
@@ -23,16 +23,6 @@ button {
   cursor: pointer;
 }
 
-table {
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-td, th {
-  border: 1px solid black;
-  padding: 6px 10px;
-}
-
 #uploadArea {
   margin-top: 20px;
 }
@@ -45,14 +35,7 @@ td, th {
 </head>
 <body>
 
-<h1>GD Level Version Converter</h1>
-
-<table id="dataTable">
-  <tr><th>Update 1.0</th><th>44</th></tr>
-  <tr><td>Filter A</td><td>100</td></tr>
-  <tr><td>Filter B</td><td>200</td></tr>
-  <tr><td>Filter C</td><td>300</td></tr>
-</table>
+<h1>GD Block Filter Tool</h1>
 
 <div id="topButtons"></div>
 
@@ -64,23 +47,37 @@ td, th {
 
 <button id="downloadBtn">Download Modified File</button>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+
 <script>
-// Build top buttons from table
-const table = document.getElementById("dataTable");
-const btnArea = document.getElementById("topButtons");
+// -------------------------------
+// ROW DEFINITIONS (NO TABLE)
+// -------------------------------
+const rows = [
+  { label: "Filter A", number: 100 },
+  { label: "Filter B", number: 200 },
+  { label: "Filter C", number: 300 }
+];
+
+// -------------------------------
+// BUILD BUTTONS
+// -------------------------------
 let selectedLimit = null;
+const btnArea = document.getElementById("topButtons");
 
-for (let i = 1; i < table.rows.length; i++) {
-  const label = table.rows[i].cells[0].innerText;
-  const num = parseInt(table.rows[i].cells[1].innerText);
-
+rows.forEach(row => {
   const btn = document.createElement("button");
-  btn.textContent = label;
-  btn.onclick = () => { selectedLimit = num; alert("Selected filter: " + label); };
+  btn.textContent = row.label;
+  btn.onclick = () => {
+    selectedLimit = row.number;
+    alert("Selected filter: " + row.label);
+  };
   btnArea.appendChild(btn);
-}
+});
 
-// Upload button
+// -------------------------------
+// UPLOAD HANDLING
+// -------------------------------
 document.getElementById("uploadBtn").onclick = () => {
   document.getElementById("fileInput").click();
 };
@@ -94,10 +91,10 @@ document.getElementById("fileInput").addEventListener("change", async function()
   const file = this.files[0];
   const text = await file.text();
 
-  // Extract base64 from <s>...</s>
+  // Extract base64 from <k>k4</k><s>...</s>
   const base64 = text.match(/<k>k4<\/k><s>(.*?)<\/s>/)[1];
 
-  // Base64 decode → gzip → XML
+  // Decode → gunzip → XML
   const binary = atob(base64);
   const bytes = new Uint8Array([...binary].map(c => c.charCodeAt(0)));
   const xml = new TextDecoder().decode(pako.ungzip(bytes));
@@ -108,7 +105,9 @@ document.getElementById("fileInput").addEventListener("change", async function()
 
   let objects = objMatch[1].split("|").filter(x => x.length > 0);
 
-  // Filter blocks
+  // -------------------------------
+  // FILTER BLOCKS
+  // -------------------------------
   let filtered = objects.filter(obj => {
     let parts = obj.split(",");
     if (parts[0] !== "1") return true; // only block ID=1
@@ -116,7 +115,6 @@ document.getElementById("fileInput").addEventListener("change", async function()
     return second <= selectedLimit;
   });
 
-  // Rebuild object string
   let newObjString = filtered.join("|") + "|";
 
   // Replace inside XML
@@ -129,7 +127,9 @@ document.getElementById("fileInput").addEventListener("change", async function()
   // Replace inside original file
   let newFile = text.replace(base64, b64);
 
-  // Enable download
+  // -------------------------------
+  // DOWNLOAD BUTTON
+  // -------------------------------
   const dl = document.getElementById("downloadBtn");
   dl.style.display = "inline-block";
   dl.onclick = () => {
@@ -142,9 +142,6 @@ document.getElementById("fileInput").addEventListener("change", async function()
   };
 });
 </script>
-
-<!-- pako gzip library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
 
 </body>
 </html>
