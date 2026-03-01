@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GD Object Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      text-align: left;
+    }
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 20px;
+      margin: 6px 0;
+    }
+    a {
+      font-size: 20px;
+      color: #0078ff;
+      text-decoration: none;
+      margin: 6px 0;
+      display: block;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 400px;
+    }
+    table, th, td {
+      border: 1px solid #000;
+    }
+    th, td {
+      padding: 8px;
+      font-size: 18px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    td img, th img {
+      display: block;
+      margin: auto;
+    }
+
+    /* NEW: layout container */
+    .layout {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    /* NEW: right-side link column */
+    .right-links {
+      min-width: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    const colourMap = {
+      Yw: "#fcff54 #8d8f25",
+      Rd: "#ff8f82 #a63a2e",
+      Gn: "#8aff90 #29752d"
+    };
+
+    const columnColourMap = {
+      "Image": "#919191 #ffffff"
+    };
+  </script>
+  
+  <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/">Back</a>
+  <h1>Object Data</h1>
+  <p>Here is the data for every object in Geometry Dash added in update 1.3!<br>You can click the links below for the objects from specific updates.</p>
+
+  <!-- NEW FLEX LAYOUT -->
+  <div class="layout">
+
+    <!-- TABLE -->
+    <table id="blockTable"></table>
+
+    <!-- RIGHT SIDE LINKS -->
+    <div class="right-links">
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.0/">1.0 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.1/">1.1 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.3/">1.2 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.4/">1.4 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.5/">1.5 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.6/">1.6 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.7/">1.7 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.8/">1.8 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd1.9/">1.9 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd2.0/">2.0 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd2.1/">2.1 Objects</a>
+      <a href="https://randomcodeplayer.github.io/GDArchiveVault/ObjDataBase/Upd2.2/">2.2 Objects</a>
+    </div>
+
+  </div>
+
+  <script>
+    async function loadBlockData() {
+      const url = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/ObjDataBase/Upd1.3/ObjData.txt";
+
+      try {
+        const response = await fetch(url);
+        const text = await response.text();
+
+        const lines = text.trim().split("\n");
+        const table = document.getElementById("blockTable");
+
+        let headers = [];
+
+        lines.forEach((line, index) => {
+          const row = document.createElement("tr");
+          const cells = line.split(",");
+
+          let colourName = null;
+          if (cells.length > 5) {
+            colourName = cells[cells.length - 1].trim();
+            cells.pop();
+          }
+
+          if (colourName && colourMap[colourName]) {
+            const [bg, textColor] = colourMap[colourName].split(" ");
+            row.style.backgroundColor = bg;
+            row.style.color = textColor;
+          }
+
+          if (index === 0) {
+            headers = cells;
+          }
+
+          cells.forEach((cell, colIndex) => {
+            const cellElement = document.createElement(index === 0 ? "th" : "td");
+
+            const headerName = headers[colIndex];
+            if (columnColourMap[headerName]) {
+              const [bg, textColor] = columnColourMap[headerName].split(" ");
+              cellElement.style.backgroundColor = bg;
+              cellElement.style.color = textColor;
+            }
+
+            if (cell.startsWith("http://") || cell.startsWith("https://")) {
+              const img = document.createElement("img");
+              img.src = cell;
+              img.loading = "lazy";
+              img.style.maxWidth = "50px";
+              img.style.maxHeight = "50px";
+              img.style.objectFit = "contain";
+              cellElement.appendChild(img);
+            } else {
+              cellElement.textContent = cell;
+            }
+
+            row.appendChild(cellElement);
+          });
+
+          table.appendChild(row);
+        });
+
+      } catch (err) {
+        console.error("Error loading block data:", err);
+      }
+    }
+
+    loadBlockData();
+  </script>
+
+</body>
+</html>
