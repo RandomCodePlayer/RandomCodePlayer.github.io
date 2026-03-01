@@ -58,10 +58,16 @@ const dataURL = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePl
 fetch(dataURL)
     .then(r => r.text())
     .then(text => {
-        const lines = text.trim().split("\n");
+        const lines = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
+
         const items = lines.map(line => {
-            const [img, big, small, percent] = line.split(",");
-            return { img, big, small, percent: parseFloat(percent) };
+            const parts = line.split(",").map(p => p.trim());
+            return {
+                img: parts[0],
+                big: parts[1],
+                small: parts[2],
+                percent: parseFloat(parts[3])
+            };
         });
 
         items.sort((a, b) => b.percent - a.percent);
@@ -71,7 +77,6 @@ fetch(dataURL)
         items.forEach(item => {
             const row = document.createElement("div");
             row.className = "row";
-
             row.innerHTML = `
                 <img loading="lazy" src="${item.img}">
                 <div class="text">
@@ -80,7 +85,6 @@ fetch(dataURL)
                 </div>
                 <div class="percent">${item.percent}%</div>
             `;
-
             container.appendChild(row);
         });
     });
