@@ -70,24 +70,21 @@ function parseCSVLine(line) {
             current += c;
         }
     }
-    if (current.length > 0) {
-        result.push(current.trim());
-    }
+    result.push(current.trim());
     return result;
 }
 
 fetch(dataURL)
     .then(r => r.text())
     .then(text => {
-        const lines = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
-
+        const lines = text.split("\n").map(l => l.trim()).filter(l => l.includes(","));
         const items = lines.map(line => {
-            const parts = parseCSVLine(line);
+            const p = parseCSVLine(line);
             return {
-                img: parts[0],
-                big: parts[1],
-                small: parts[2],
-                percent: parseFloat(parts[3])
+                img: p[0],
+                big: p[1],
+                small: p[2],
+                percent: parseFloat(p[3])
             };
         });
 
