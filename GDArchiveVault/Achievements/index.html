@@ -27,7 +27,18 @@
     }
     .text {
         flex: 1;
-        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .subtitle {
+        font-size: 13px;
+        color: #555;
+        margin-top: 2px;
     }
     .percent {
         font-weight: bold;
@@ -40,26 +51,38 @@
 <h1>Geometry Dash Achievments</h1>
 
 <div class="row">
-    <img src="https://example.com/image1.png" alt="Image 1">
-    <div class="text">Example Item A</div>
+    <img loading="lazy" src="https://example.com/image1.png" alt="Image 1">
+    <div class="text">
+        <div class="title">Example Item A</div>
+        <div class="subtitle">Small description here</div>
+    </div>
     <div class="percent">85%</div>
 </div>
 
 <div class="row">
-    <img src="https://example.com/image2.png" alt="Image 2">
-    <div class="text">Example Item B</div>
+    <img loading="lazy" src="https://example.com/image2.png" alt="Image 2">
+    <div class="text">
+        <div class="title">Example Item B</div>
+        <div class="subtitle">Small description here</div>
+    </div>
     <div class="percent">62%</div>
 </div>
 
 <div class="row">
-    <img src="https://example.com/image3.png" alt="Image 3">
-    <div class="text">Example Item C</div>
+    <img loading="lazy" src="https://example.com/image3.png" alt="Image 3">
+    <div class="text">
+        <div class="title">Example Item C</div>
+        <div class="subtitle">Small description here</div>
+    </div>
     <div class="percent">41%</div>
 </div>
 
 <div class="row">
-    <img src="https://example.com/image4.png" alt="Image 4">
-    <div class="text">Example Item D</div>
+    <img loading="lazy" src="https://example.com/image4.png" alt="Image 4">
+    <div class="text">
+        <div class="title">Example Item D</div>
+        <div class="subtitle">Small description here</div>
+    </div>
     <div class="percent">19%</div>
 </div>
 
