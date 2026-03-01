@@ -2,51 +2,63 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>GD Achievments</title>
+<title>GD Achievements</title>
 <style>
     body {
         font-family: Arial, sans-serif;
         background: #f5f5f5;
         padding: 20px;
     }
-    .row {
+
+    .header {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         background: white;
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 6px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        margin-bottom: 20px;
     }
-    .row img {
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
-        border-radius: 4px;
-        margin-right: 15px;
+
+    .header-title {
+        font-size: 32px;
+        font-weight: bold;
     }
-    .text {
-        flex: 1;
+
+    .button-group {
         display: flex;
-        flex-direction: column;
-        text-align: center;
+        gap: 12px;
     }
-    .title {
-        font-size: 18px;
-        font-weight: bold;
+
+    .button-group img {
+        width: 55px;
+        height: 55px;
+        object-fit: cover;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.15s ease;
     }
-    .subtitle {
-        font-size: 13px;
-        color: #555;
-        margin-top: 2px;
-    }
-    .percent {
-        font-weight: bold;
-        font-size: 18px;
+
+    .button-group img:hover {
+        transform: scale(1.08);
     }
 </style>
 </head>
 <body>
+
+<div class="header">
+    <div class="header-title">Geometry Dash Achievements</div>
+
+    <div class="button-group">
+        <a href="#"><img src="https://via.placeholder.com/55" alt="Button 1"></a>
+        <a href="#"><img src="https://via.placeholder.com/55" alt="Button 2"></a>
+        <a href="#"><img src="https://via.placeholder.com/55" alt="Button 3"></a>
+    </div>
+</div>
+
+</body>
+</html>
 
 <h1>Geometry Dash Achievments Testing</h1>
 
