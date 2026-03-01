@@ -14,3 +14,20 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/a045
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/18f58e08c0c008451471d92750c055197f731b8d.jpg,They are REALLY warm!,"Collect 3,000 stars",2
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/bbf31e6ea4de7ce8e7472fbfb2dc498d97326e8d.jpg,IT BURNS!!,"Collect 3,500 stars",2
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/bd1edadae514ed794209dd44b87ce33271fe9444.jpg,GAAAAAAAAAH!,"Collect 4,000 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/ef2a69f271599de39c2f6e51372126f94f756c1f.jpg,More Star Achievements?,"Collect 4,500 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/3f229b0f5faf85bd310dc847b03925d9219eec8c.jpg,"You want me to collect 5,000!?","Collect 5,000 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/db3c21dbc3e20823dac7b1939a37ea4fa2daeb35.jpg,I should sell these,"Collect 5,500 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/77dbede45bcd34e533b92f669645ddc1d6563c2a.jpg,Why so many?,"Collect 6,000 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/0fc282c6496adbb771407f30072421ec22387db7.jpg,No Stars for You!,"Collect 6,500 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/07ac2d9859da2513888bcd0f8311c016f414740b.jpg,All Stars Are My Stars!,"Collect 7,000 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/fd33a18f66a355a6e0b7cb45e05f63b8ef0aaae9.jpg,This is the Last Star Achievement,"Collect 7,500 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d847e45c433224ab2b051fdb63f4113fa6b183cb.jpg,"Just Kidding, There Are More","Collect 8,000 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/a36a001767eed8f517680b11dfb8579b1a2602ea.jpg,I Think I Got All the Stars,"Collect 9,000 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/501b6df6421475a3bdfbe5c5cb541287c2ad6bc0.jpg,"Nope, Found More Over There","Collect 10,000 stars",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/5c9ea9e8f4f618ff57dfa6c4a53fbe0d3aaf1fdc.jpg,"But Wait, There's Even More!","Collect 12,000 stars",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/25557e975dc8504433dff1e25a962cb295420a9e.jpg,PLEASE NO MORE!!!!!,"Collect 14,000 stars",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/fff1a6ae5dd811190cf444c97218ec2cbd5a5dab.jpg,"There's Always More, My Friend","Collect 16,000 stars",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/92288a3ded06858d4e83eec3b4451754a98b4816.jpg,Aim for the stars!,"Collect 18,000 stars",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/7dcfeab77f534ef8d73f048bb835c3ac113297e1.jpg,Wish Come True!,"Collect 20,000 stars",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/e81eca0ce271e22dd92edd47f2b3de100422074f.jpg,The Stars Align,"Collect 22,500 stars,0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1fa7af69ed487db0f0db538fd7a7847bbca87384.jpg,SUPERSTAR,"Collect 25,000 stars",0
