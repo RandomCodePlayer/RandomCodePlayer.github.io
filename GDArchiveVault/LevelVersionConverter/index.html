@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>GD Level Version Converter</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 30px;
+}
+
+#topButtons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 8px 14px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 6px 10px;
+}
+
+#uploadArea {
+  margin-top: 20px;
+}
+
+#downloadBtn {
+  margin-top: 20px;
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<h1>GD Level Version Converter</h1>
+
+<table id="dataTable">
+  <tr><th>Update 1.0</th><th>44</th></tr>
+  <tr><td>Filter A</td><td>100</td></tr>
+  <tr><td>Filter B</td><td>200</td></tr>
+  <tr><td>Filter C</td><td>300</td></tr>
+</table>
+
+<div id="topButtons"></div>
+
+<div id="uploadArea">
+  <button id="uploadBtn">Upload File</button>
+  <p>Only Accepts GMD Files</p>
+  <input type="file" id="fileInput" accept=".gmd" style="display:none;">
+</div>
+
+<button id="downloadBtn">Download Modified File</button>
+
+<script>
+// Build top buttons from table
+const table = document.getElementById("dataTable");
+const btnArea = document.getElementById("topButtons");
+let selectedLimit = null;
+
+for (let i = 1; i < table.rows.length; i++) {
+  const label = table.rows[i].cells[0].innerText;
+  const num = parseInt(table.rows[i].cells[1].innerText);
+
+  const btn = document.createElement("button");
+  btn.textContent = label;
+  btn.onclick = () => { selectedLimit = num; alert("Selected filter: " + label); };
+  btnArea.appendChild(btn);
+}
+
+// Upload button
+document.getElementById("uploadBtn").onclick = () => {
+  document.getElementById("fileInput").click();
+};
+
+document.getElementById("fileInput").addEventListener("change", async function() {
+  if (!selectedLimit) {
+    alert("Select a filter button first!");
+    return;
+  }
+
+  const file = this.files[0];
+  const text = await file.text();
+
+  // Extract base64 from <s>...</s>
+  const base64 = text.match(/<k>k4<\/k><s>(.*?)<\/s>/)[1];
+
+  // Base64 decode → gzip → XML
+  const binary = atob(base64);
+  const bytes = new Uint8Array([...binary].map(c => c.charCodeAt(0)));
+  const xml = new TextDecoder().decode(pako.ungzip(bytes));
+
+  // Extract object string (kS38)
+  let objMatch = xml.match(/kS38.*?<s>(.*?)<\/s>/);
+  if (!objMatch) { alert("No object data found."); return; }
+
+  let objects = objMatch[1].split("|").filter(x => x.length > 0);
+
+  // Filter blocks
+  let filtered = objects.filter(obj => {
+    let parts = obj.split(",");
+    if (parts[0] !== "1") return true; // only block ID=1
+    let second = parseInt(parts[1]);
+    return second <= selectedLimit;
+  });
+
+  // Rebuild object string
+  let newObjString = filtered.join("|") + "|";
+
+  // Replace inside XML
+  let newXML = xml.replace(objMatch[1], newObjString);
+
+  // Recompress → base64
+  const gz = pako.gzip(newXML);
+  let b64 = btoa(String.fromCharCode(...gz));
+
+  // Replace inside original file
+  let newFile = text.replace(base64, b64);
+
+  // Enable download
+  const dl = document.getElementById("downloadBtn");
+  dl.style.display = "inline-block";
+  dl.onclick = () => {
+    const blob = new Blob([newFile], {type: "text/plain"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = file.name;
+    a.click();
+  };
+});
+</script>
+
+<!-- pako gzip library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js"></script>
+
+</body>
+</html>
