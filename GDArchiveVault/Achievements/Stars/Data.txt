@@ -1,1 +1,6 @@
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/4d190c3090b53879805cb769a672dc7feea177af.jpg,"Oh, Shiny",Collect 100 stars,43
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/b67afcb699559240bcda57251cd39e1eceb494fb.jpg,More Stars!,Collect 200 stars,32
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/04d92d101e6093d07c6ad03f59b8044133d2d171.jpg,Star Maniac,Collect 300 stars,27
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/c6df5cc37d7d1b112cdb25bbcacea705a0326d0a.jpg,Master Collector,Collect 400 stars,23
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1b0fdbbc6a9b3b6d3658e66ec9a6d0f2365a2130.jpg,Epic Collector,Collect 500 stars,20
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/e7cf939dca03bf4c90207b3f4be6a538cb9c778d.jpg,Epic Master Collector,Collect 600 stars,18
