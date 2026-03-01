@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>GD Achievments</title>
+<title>GD Achievements</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -12,36 +12,34 @@
         margin: 0;
     }
 
-    .title-with-buttons {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 25px;
-    }
-
-    .title-with-buttons h1 {
-        margin: 0;
-        font-size: 32px;
-        font-weight: bold;
-        line-height: 55px;
-    }
-
-    .button-group {
+    .left-buttons {
+        position: fixed;
+        left: 20px;
+        top: 20px;
         display: flex;
-        gap: 8px;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 10;
     }
 
-    .button-group a img {
-        width: 55px;
-        height: 55px;
+    .left-buttons a img {
+        width: 90px;
+        height: 90px;
         object-fit: cover;
-        border-radius: 6px;
+        border-radius: 10px;
         cursor: pointer;
         transition: transform 0.15s ease;
     }
 
-    .button-group a img:hover {
+    .left-buttons a img:hover {
         transform: scale(1.08);
+    }
+
+    .title-image {
+        display: block;
+        margin: 0 auto 30px auto;
+        width: 420px;
+        height: auto;
     }
 
     .row {
@@ -90,15 +88,13 @@
 </head>
 <body>
 
-<div class="title-with-buttons">
-    <h1>Geometry Dash Achievments</h1>
-
-    <div class="button-group">
-        <a href="https://example.com/1"><img src="https://via.placeholder.com/55" alt="Button 1"></a>
-        <a href="https://example.com/2"><img src="https://via.placeholder.com/55" alt="Button 2"></a>
-        <a href="https://example.com/3"><img src="https://via.placeholder.com/55" alt="Button 3"></a>
-    </div>
+<div class="left-buttons">
+    <a href="https://randomcodeplayer.github.io/GDArchiveVault/Achievements/Stars/"><img src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/ItemSprites/StarButton.png" alt="Stars"></a>
+    <a href="https://example.com/2"><img src="https://via.placeholder.com/90" alt="Button 2"></a>
+    <a href="https://example.com/3"><img src="https://via.placeholder.com/90" alt="Button 3"></a>
 </div>
+
+<img class="title-image" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/MainSprites/BackGround.png" alt="GD Achievements">
 
 <div id="container"></div>
 
