@@ -43,6 +43,47 @@
     .button-group img:hover {
         transform: scale(1.08);
     }
+
+    .row {
+        display: flex;
+        align-items: center;
+        background: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .row img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-right: 15px;
+    }
+
+    .text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .subtitle {
+        font-size: 13px;
+        color: #555;
+        margin-top: 2px;
+    }
+
+    .percent {
+        font-weight: bold;
+        font-size: 18px;
+    }
 </style>
 </head>
 <body>
@@ -57,15 +98,10 @@
     </div>
 </div>
 
-</body>
-</html>
-
-<h1>Geometry Dash Achievments Testing</h1>
-
 <div id="container"></div>
 
 <script>
-const dataURL = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/Stars/Data.txt";
+const dataURL = "YOUR_DATA_FILE_URL_HERE";
 
 function parseCSVLine(line) {
     const result = [];
