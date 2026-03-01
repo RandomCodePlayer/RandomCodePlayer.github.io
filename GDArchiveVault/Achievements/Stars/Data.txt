@@ -4,3 +4,13 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/04d9
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/c6df5cc37d7d1b112cdb25bbcacea705a0326d0a.jpg,Master Collector,Collect 400 stars,23
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1b0fdbbc6a9b3b6d3658e66ec9a6d0f2365a2130.jpg,Epic Collector,Collect 500 stars,20
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/e7cf939dca03bf4c90207b3f4be6a538cb9c778d.jpg,Epic Master Collector,Collect 600 stars,18
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/4f42872bbb3123a36676501f17c86ffa2554b6e1.jpg,Star Factory, Collect 700 stars,16
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/6deee5697372bb35c74a8f3bae64d97c13c7b4b5.jpg,Starshine,Collect 800 stars,15
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/757bff738f4e86a70df5037195bfe4e486931fe2.jpg,All MINE!,Collect 900 stars,14
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2af7aff775f2b160dfbbfb354e29f0827262a403.jpg,MORE SHINY!!!,"Collect 1,000 stars",13
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/b146a828f1e956ba86f4fd1f60514fd325680209.jpg,Was that all of them?,"Collect 1,500 stars",10
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d605d38ba9b45ec23802706e175572f900032f27.jpg,Knock knock. Who's there? STARS!,"Collect 2,000 stars",8
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/a0450b5bedbb671d41ca106ee731296818f370d7.jpg,These are pretty warm...,"Collect 2,500 stars",2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/18f58e08c0c008451471d92750c055197f731b8d.jpg,They are REALLY warm!,"Collect 3,000 stars",2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/bbf31e6ea4de7ce8e7472fbfb2dc498d97326e8d.jpg,IT BURNS!!,"Collect 3,500 stars",2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/bd1edadae514ed794209dd44b87ce33271fe9444.jpg,GAAAAAAAAAH!,"Collect 4,000 stars",1
