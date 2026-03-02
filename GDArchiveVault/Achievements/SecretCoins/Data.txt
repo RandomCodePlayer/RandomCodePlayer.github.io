@@ -1,0 +1,4 @@
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/48294a4f7e82e04e8b7c3393eda9e108009450c7.jpg,Coins?!,Collect 5 secret coins,60
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/7f740e07854815676a60626e440ac538293110b4.jpg,Maybe behind that block?,Collect 10 secret coins,51
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1778f8ccded242497ee9fcf3ca065a525b9acb03.jpg,I.. Need... MORE!,Collect 15 secret coins,44
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/9cb7509220c577a189789337eea151ed4493db75.jpg,We wants it!,Collect 20 secret coins,40
