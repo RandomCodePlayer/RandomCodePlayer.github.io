@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GD Achievements</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: url("https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/MainSprites/BackGround.png") no-repeat center center fixed;
+        background-size: cover;
+        padding: 20px;
+        margin: 0;
+    }
+
+    .left-buttons {
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 10;
+    }
+
+    .left-buttons a img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.15s ease;
+    }
+
+    .left-buttons a img:hover {
+        transform: scale(1.08);
+    }
+
+    .title-image {
+        display: block;
+        margin: 0 auto 30px auto;
+        width: 600px;
+        height: auto;
+    }
+
+    .row {
+        width: 45%;
+        margin: 0 auto 22px auto;
+        display: flex;
+        align-items: center;
+        background: white;
+        padding: 14px;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    .row img {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-right: 14px;
+    }
+
+    .text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .subtitle {
+        font-size: 12px;
+        color: #555;
+        margin-top: 2px;
+    }
+
+    .percent {
+        font-weight: bold;
+        font-size: 18px;
+        margin-right: 8px;
+    }
+</style>
+</head>
+<body>
+
+<div class="left-buttons">
+    <a href="https://randomcodeplayer.github.io/GDArchiveVault/Achievements/Stars/"><img src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/ItemSprites/StarButton.png" alt="Stars"></a>
+    <a href="https://randomcodeplayer.github.io/GDArchiveVault/Achievements/Moons/"><img src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/ItemSprites/MoonButton.png" alt="Moons"></a>
+    <a href="https://randomcodeplayer.github.io/GDArchiveVault/Achievements/Demons/"><img src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/ItemSprites/DemonButton.png" alt="Demons"></a>
+    <a href="https://randomcodeplayer.github.io/GDArchiveVault/Achievements/SecretCoins/"><img src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/ItemSprites/SecretCoinButton.png" alt="Secret Coins"></a>
+    <a href="https://randomcodeplayer.github.io/GDArchiveVault/Achievements/UserCoins/"><img src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/ItemSprites/UserCoinButton.png" alt="User Coins"></a>
+    <a href="https://randomcodeplayer.github.io/GDArchiveVault/Achievements/Diamonds/"><img src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/ItemSprites/DiamondButton.png" alt="Diamonds"></a>
+</div>
+
+<img class="title-image" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/MainSprites/GDAchievements.png" alt="GD Achievements">
+
+<div id="container"></div>
+
+<script>
+const dataURL = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/SecretCoins/Data.txt";
+
+function parseCSVLine(line) {
+    const result = [];
+    let current = "";
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') {
+            inQuotes = !inQuotes;
+        } else if (c === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = "";
+        } else {
+            current += c;
+        }
+    }
+    result.push(current.trim());
+    return result;
+}
+
+fetch(dataURL)
+    .then(r => r.text())
+    .then(text => {
+        const lines = text.split("\n").map(l => l.trim()).filter(l => l.includes(","));
+        const items = lines.map(line => {
+            const p = parseCSVLine(line);
+            return {
+                img: p[0],
+                big: p[1],
+                small: p[2],
+                percent: parseFloat(p[3])
+            };
+        });
+
+        items.sort((a, b) => b.percent - a.percent);
+
+        const container = document.getElementById("container");
+
+        items.forEach(item => {
+            const row = document.createElement("div");
+            row.className = "row";
+            row.innerHTML = `
+                <img loading="lazy" src="${item.img}">
+                <div class="text">
+                    <div class="title">${item.big}</div>
+                    <div class="subtitle">${item.small}</div>
+                </div>
+                <div class="percent">${item.percent}%</div>
+            `;
+            container.appendChild(row);
+        });
+    });
+</script>
+
+</body>
+</html>
