@@ -2,3 +2,8 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/4829
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/7f740e07854815676a60626e440ac538293110b4.jpg,Maybe behind that block?,Collect 10 secret coins,51
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1778f8ccded242497ee9fcf3ca065a525b9acb03.jpg,I.. Need... MORE!,Collect 15 secret coins,44
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/9cb7509220c577a189789337eea151ed4493db75.jpg,We wants it!,Collect 20 secret coins,40
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/11baad71d55037b7042b7cee09ed9177264a9bd2.jpg,We needs it!,Collect 25 secret coins,36
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d87a7b0898c8b3a047588e28baa979e4fccbcbbe.jpg,Must have the precious,Collect 30 secret coins,34
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2db748d44ebed1b40a495557a6291ab01b9c699a.jpg,They stole it from us!,Collect 35 secret coins,29
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/82ee43f7b787d60642279437f89da491ec35d80a.jpg,Where is it?! Where is it?!,Collect 40 secret coins,26
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1dc52b48954f8ddc71717bb7082fcb058a2d4e09.jpg,"Thief, thief, thief!",Collect 45 secret coins,23
