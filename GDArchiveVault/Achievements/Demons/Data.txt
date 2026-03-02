@@ -1,0 +1,7 @@
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/8d30553b9c3b5c84feadbdcfc93be39ab43780af.jpg,Reflex Champion,Complete a demon difficulty level in normal mode,38
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/35ceb9cead06ef0aea11c0bc393f5f34fde53bee.jpg,Demon Chaser,Complete 2 demon difficulty levels in normal mode,32
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1cd12f60349e40a6fd26ca0be172ba4bf5eaa765.jpg,The One,Complete 3 demon difficulty levels in normal mode,29
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/e2012dcc36edd0111758aaae6266e1ab092cfa34.jpg,Demon Master,Complete 4 demon difficulty levels in normal mode,27
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/7528cb26758098ced5d452eaa007bdfbdfac50e8.jpg,Demonic Guardian,Complete 5 demon difficulty levels in normal mode,25
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/faa552e6c6a603b9cb37af2a43964183614cc0e0.jpg,Demonic Overmind,Complete 10 demon difficulty levels in normal mode,19
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2a36af67c20f20b0fe7ce9cdd5e35dde1b092a46.jpg,Master of Timing,Complete 15 demon difficulty levels in normal mode,16
