@@ -5,3 +5,23 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/e201
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/7528cb26758098ced5d452eaa007bdfbdfac50e8.jpg,Demonic Guardian,Complete 5 demon difficulty levels in normal mode,25
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/faa552e6c6a603b9cb37af2a43964183614cc0e0.jpg,Demonic Overmind,Complete 10 demon difficulty levels in normal mode,19
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2a36af67c20f20b0fe7ce9cdd5e35dde1b092a46.jpg,Master of Timing,Complete 15 demon difficulty levels in normal mode,16
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/21be2770d3bd60cb495d6909410909f2376b970a.jpg,Unstoppable!,Complete 20 demon difficulty levels in normal mode,14
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/ec0b67d72808c981f90df59a6112c29338c0534e.jpg,Demolicious!,Complete 30 demon difficulty levels in normal mode,11
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/0c7557afb9a27c6bee1e43f25791b6157ecbd885.jpg,Give me a CHALLENGE!,Complete 40 demon difficulty levels in normal mode,10
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/038da2fd1937a53a0fc41f7b4357b4ce1a296d5a.jpg,Grim Reaper,Complete 50 demon difficulty levels in normal mode,4
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/84b29a1a96184143d17e18385c318286e649ddc5.jpg,You fear nothing,Complete 60 demon difficulty levels in normal mode,3
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/8705051e6db35374f6bb71e110e497270373b162.jpg,Like the devil,Complete 70 demon difficulty levels in normal mode,3
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/f92cbe482f2a2f762af322312dd3469337a4c26e.jpg,Speed Demon,Complete 80 demon difficulty levels in normal mode,2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2e35b1ca3f374347e35464b6c83bab51d327b408.jpg,9 circles of hell,Complete 90 demon difficulty levels in normal mode,2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/85ad5cb8419357ac6806c10798a98a90d9fe4db2.jpg,Is it over yet?,Complete 100 demon difficulty levels in normal mode,2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/e6f3afd82c6499be6996dc7bbf76ac44c16a19d1.jpg,Supersonic speed,Complete 120 demon difficulty levels in normal mode,2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/4b56deba646f1ff4b45c0d9a8f26378489779b79.jpg,Straight fly master,Complete 140 demon difficulty levels in normal mode,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/0254863b832de7222c386127be08ae3ae9f36ada.jpg,RIP AND TEAR,Complete 160 demon difficulty levels in normal mode,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/696d93e3b3d64045c62ec770a46370b2ee000848.jpg,Gotta beat them all,Complete 180 demon difficulty levels in normal mode,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/98e9370a546dac51d5ea4b6442ea5915ef01e5e6.jpg,Deal with the devil,Complete 200 demon difficulty levels in normal mode,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1235cf2fabb0c9bc04eed1d0bc7029f8f41fc6d4.jpg,This is a nightmare,Complete 225 demon difficulty levels in normal mode,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/f9b0823cefe77cc3d3e9b0c0aa712ec825ad2c9d.jpg,The Chosen One,Complete 250 demon difficulty levels in normal mode,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/99a8f8b5f85a7b8b8d571335f7b3812dbb3f027a.jpg,What a bloodbath,Complete 300 demon difficulty levels in normal mode,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/320e03428cc993051396e870c06d4fe9339fe09b.jpg,Tarsorado Demon,Complete 350 demon difficulty levels in normal mode,0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/0b7c343508a87dd7394e0c97b85c6c36d5e40a32.jpg,Insatiable bloodlust,Complete 400 demon difficuly levels in normal mode,0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/46e5cbca871e769e759b645cef6ca73b27952de2.jpg,GG! :),Complete 500 demon difficulty levels in normal mode,0
