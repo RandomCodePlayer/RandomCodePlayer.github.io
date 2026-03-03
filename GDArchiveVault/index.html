@@ -1,40 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>GDArchiveVault</title>
-  <style>
+<meta charset="UTF-8">
+<title>GD Achievements</title>
+<style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
-      text-align: left;
+        font-family: Arial, sans-serif;
+        background: url("https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/BlueBG.png") no-repeat center center fixed;
+        background-size: cover;
+        padding: 20px;
+        margin: 0;
     }
-    h1 {
-      font-size: 40px;
-      margin-bottom: 20px;
+
+    .left-buttons {
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        z-index: 10;
     }
-    p {
-      font-size: 20px;
-      margin: 6px 0;
+
+    .left-buttons img {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.15s ease;
     }
-    a {
-      font-size: 20px; /* smaller than title */
-      color: #0078ff;
-      text-decoration: none;
-      margin: 6px 0;
-      display: block;
+
+    .left-buttons img:hover {
+        transform: scale(1.08);
     }
-    a:hover {
-      text-decoration: underline;
+
+    .title-image {
+        display: block;
+        margin: 0 auto 30px auto;
+        width: 600px;
+        height: auto;
     }
-  </style>
+
+    .row {
+        width: 45%;
+        margin: 0 auto 22px auto;
+        display: flex;
+        align-items: center;
+        background: white;
+        padding: 14px;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    .row img {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 4px;
+        margin-right: 14px;
+    }
+
+    .text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .title {
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .subtitle {
+        font-size: 12px;
+        color: #555;
+        margin-top: 2px;
+    }
+
+    .percent {
+        font-weight: bold;
+        font-size: 18px;
+        margin-right: 8px;
+    }
+</style>
 </head>
 <body>
 
-  <h1>Geometry Dash Archive Vault</h1>
-  <p>Database is still not complete!<br>Expected completion date is roughly mid April 2026.</p>
+<div class="left-buttons">
+    <img onclick="loadData(STARS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/StarButton.png" alt="Stars">
+    <img onclick="loadData(MOONS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/MoonButton.png" alt="Moons">
+    <img onclick="loadData(DEMONS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/DemonButton.png" alt="Demons">
+    <img onclick="loadData(SECRET_COINS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/SecretCoinButton.png" alt="Secret Coins">
+    <img onclick="loadData(USER_COINS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/UserCoinButton.png" alt="User Coins">
+    <img onclick="loadData(DIAMONDS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/DiamondButton.png" alt="Diamonds">
+</div>
 
-  <a href="ObjDataBase">Object Data</a>
+<img class="title-image" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/GDAchievements.png" alt="GD Achievements">
+
+<div id="container"></div>
+
+<script>
+// Data sources
+const STARS = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/StarData.txt";
+const MOONS = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/MoonData.txt";
+const DEMONS = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/DemonData.txt";
+const SECRET_COINS = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/SecretCoinData.txt";
+const USER_COINS = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/UserCoinData.txt";
+const DIAMONDS = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/DiamondData.txt";
+
+function parseCSVLine(line) {
+    const result = [];
+    let current = "";
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') {
+            inQuotes = !inQuotes;
+        } else if (c === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = "";
+        } else {
+            current += c;
+        }
+    }
+    result.push(current.trim());
+    return result;
+}
+
+function loadData(url) {
+    fetch(url)
+        .then(r => r.text())
+        .then(text => {
+            const lines = text.split("\n").map(l => l.trim()).filter(l => l.includes(","));
+            const items = lines.map(line => {
+                const p = parseCSVLine(line);
+                return {
+                    img: p[0],
+                    big: p[1],
+                    small: p[2],
+                    percent: parseFloat(p[3])
+                };
+            });
+
+            items.sort((a, b) => b.percent - a.percent);
+
+            const container = document.getElementById("container");
+            container.innerHTML = "";
+
+            items.forEach(item => {
+                const row = document.createElement("div");
+                row.className = "row";
+                row.innerHTML = `
+                    <img loading="lazy" src="${item.img}">
+                    <div class="text">
+                        <div class="title">${item.big}</div>
+                        <div class="subtitle">${item.small}</div>
+                    </div>
+                    <div class="percent">${item.percent}%</div>
+                `;
+                container.appendChild(row);
+            });
+        });
+}
+
+// Load stars by default
+loadData(STARS);
+</script>
 
 </body>
 </html>
