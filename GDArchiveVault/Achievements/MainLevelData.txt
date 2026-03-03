@@ -1,0 +1,7 @@
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/c13a227b5fa2c0f7b8056480d429c7a961f315fd.jpg,Stereo Madness,Complete Stereo Madness in normal mode,85
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/12e7c0b67d0400ba79834c193abb9e382e7b476b.jpg,Back On Track,Complete Back On Track in normal mode,76
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d551ff66c6511371696a9deb128c22915b190889.jpg,Polargeist,Complete Polargeist in normal mode,69
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/b84257883b55e4a219a65e14db56bd8cdebe584e.jpg,Dry Out,Complete Dry Out in normal mode,62
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/99c3a08d8cd4d8d40e7c6acd9a25dda4e1dc8f5b.jpg,Base After Base,Complete Base After Base in normal mode,62
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1a6a770e4fd0f29c49bff7ef176761c05156c8a2.jpg,Cant Let Go,Complete Cant Let Go in normal mode,52
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/be6a1513e7ee6e2107917af248d895e9430c55da.jpg,Jumper,Complete Jumper in normal mode,52
