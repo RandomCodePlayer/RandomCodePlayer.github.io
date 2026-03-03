@@ -1,0 +1,26 @@
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/caae60c308255fe8e7f78c98d9c9cd58d53e00d9.jpg,One small step for player,Collect 100 moons,4
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1d78b50670e63b893266597849307fb2fb8d0e63.jpg,"Houston, we have a problem",Collect 200 moons,2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/c7e1b0f08c067da81f7109a4b311e01959f5368d.jpg,Is this the moon?,Collect 300 moons,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/a971c56f75c75a6f6f869eaa8512ec8745e990ca.jpg,This is the moon alright,Collect 400 moons,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/fc209f810b0fabe83a70f1a7ca09cd5e8b38827a.jpg,Dark side of the moon?,Collect 500 moons,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/3d8b215f27fa19a7cb51fbb9b8bc49d4fe2452b6.jpg,"Nope, just the moon",Collect 600 moons,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/79d8aa0438b6711aa09e88a6d83e1cbdede737bd.jpg,Moons are like this?,Collect 700 moons,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/4104e3e4d57df1242253aeb6bfb9689f88c1d96a.jpg,They told me it was made of cheese,Collect 800 moons,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/b5784a47898330545bf97235b511d51fdf18f0c4.jpg,Fly me to the moon,Collect 900 moons,0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1cb695cdb711ee11a06a49939d0d01679e16da92.jpg,You're too used to stars,"Collect 1,000 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/a6ef6ec4e72455f2bb90ed4316ddb681308a97d3.jpg,Maybe I like stars more,"Collect 1,500 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/393480d8fc0393a612c6fd2a4942d9e146a25068.jpg,"Okay, when do you not like stars?","Collect 2,000 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/bd993e830a3ae8fee3f2d742c62a1bf16ff2c902.jpg,Once in a blue moon,"Collect 2,500 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/6d440e4a61f4f5707b0c8b2ec8ce10ea1f6462e9.jpg,Or on a full moon,"Collect 3,000 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/5c9567633209c4742ed4fd00cf4230247941657b.jpg,The werewolves are out,"Collect 3,500 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d895abb3a6760df837c64a74c71065ce6a5f2a25.jpg,So moons are the new thing,"Collect 4,000 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/8b3098b3166c9af26fafa120756e168617fd55df.jpg,I've heard of a moon before,"Collect 4,500 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/7f3d75f711cb409dbcdebe30d95c270bff0cc028.jpg,Death Moon,"Collect 5,000 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/536edfd7f358ae71105b17cff6ce7eb920d96cb4.jpg,It's gotta be platformer,"Collect 5,500 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/252bb2eaad67356b35910b614a1beab275724ef1.jpg,"Yeah, Platformer is my thing","Collect 6,000 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1e15eb8001d0a28c9977a64ac51f0d24ab32a0bd.jpg,Moons are kinda neat,"Collect 6,500 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/845d25a89818c6806110b59c1192d3e4b7fbcb55.jpg,I like moons,"Collect 7,000 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2851d8eb11b65e07c74d0db9192f8f5a4d240a40.jpg,Moons > Stars,"Collect 7,500 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/eee8de4a6d751830ba93287febaff4769cab3dce.jpg,I love moons!,"Collect 8,000 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/144a6bc08fccafa9b3376621c35bac620722161a.jpg,We are going to steal the moon,"Collect 9,000 moons",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/87279876ec87f32267af18074066bd5b1b2f229e.jpg,One giant leap for mankind,"Collect 10,000 moons",0
