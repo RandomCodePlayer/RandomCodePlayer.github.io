@@ -1,3 +1,20 @@
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/983d60fa147bea38c64a184022f3e7e744a82209.jpg,What are those!?,Collect 1 user coin,26
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/abede0d4725730b2b7d227196c667f39030fe81b.jpg,The journey begins...,Collect 10 user coins,17
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d754ad725aa8b6f86732738afda9cb61e44618c4.jpg,I can't stop!,Collect 20 user coins,12
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/cf5337f6c14642c6996f462540455c489e4cdc29.jpg,"Mom, get the camera!!!,Collect 30 user coins,10
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2b6236c5ee19ff88ec3ae6f9bf354e890ac0fe9d.jpg,I feel rich!,Collect 40 user coins,9
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/74a77fd124a09d7ead68d41a221859ecf1d493fb.jpg,What to buy...,Collect 50 user coins,8
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/8ac94585d8caccf29b4d5930a16a3fb780cdf0f8.jpg,i'll get that for you,Collect 60 user coins,7
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/334ac6ebf3f869b811bffeed740c0b983b371f71.jpg,Piece of cake,Collect 70 user coins,7
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/07318b780ce746ef1b7d84eecc273295b3c4392f.jpg,We're gonna need a bigger boat,Collect 80 user coins,6
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/49bf1e2706165f834d7377f498ca1e2016f8af12.jpg,Got coins?,Collect 90 user coins,6
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/1feb5da81f9e3b2044e6bc0619e504105c7a37c5.jpg,So... greed much?,Collect 100 user coins,5
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/775c7574aec74a87dfef545c375bf43b7825f774.jpg,MAX COINS!,Collect 110 user coins,5
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/8d5bd72fb03a4baf5cfa4fc47705360fa833d6ec.jpg,Just kidding...,Collect 120 user coins,5
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2716bb787f7b385b9fda9beb814225d65f2bc353.jpg,I think there's one left,Collect 130 user coins,4
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/de3a5783e7ddcda3d0f7da46463eaa59b8c2a490.jpg,Where did you get those?,Collect 140 user coins,4
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d506216a3233ad594e694b8860e99bd772054bbf.jpg,So many shinies...,Collect 150 user coins,4
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/e9665e01c515b334f5996f4f3724db27cce118ac.jpg,Power level increasing,Collect 150 user coins,4
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/09fdf0022feb333147554979f272c9d4fbf57010.jpg,Ultra mega coin catcher,Collect 160 user coins,4
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/5bccfab267261b58a4c626e784f310f709345925.jpg,Something that rhymes with coin,Collect 170 user coins,4
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/e1f6783a3bdc38d12cee475c01b7632528ec276d.jpg,Will you ever be satisfied?,Collect 180 user coins,3
