@@ -135,16 +135,26 @@ function loadData(url) {
     fetch(url)
         .then(r => r.text())
         .then(text => {
-            const lines = text.split("\n").map(l => l.trim()).filter(l => l.includes(","));
-            const items = lines.map(line => {
-                const p = parseCSVLine(line);
-                return {
-                    img: p[0],
-                    big: p[1],
-                    small: p[2],
-                    percent: parseFloat(p[3])
-                };
-            });
+            const lines = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
+
+            const normalLines = lines.slice(0, -1);
+            const footerLine = lines[lines.length - 1];
+
+            const footerParts = footerLine.split(",");
+            const footerBig = footerParts[0];
+            const footerSmall = footerParts[1];
+
+            const items = normalLines
+                .filter(l => l.includes(","))
+                .map(line => {
+                    const p = parseCSVLine(line);
+                    return {
+                        img: p[0],
+                        big: p[1],
+                        small: p[2],
+                        percent: parseFloat(p[3])
+                    };
+                });
 
             items.sort((a, b) => b.percent - a.percent);
 
@@ -164,6 +174,39 @@ function loadData(url) {
                 `;
                 container.appendChild(row);
             });
+
+            const footerRow = document.createElement("div");
+            footerRow.className = "row";
+            footerRow.style.flexDirection = "column";
+            footerRow.style.textAlign = "center";
+
+            const footerText = document.createElement("div");
+            footerText.className = "text";
+            footerText.innerHTML = `
+                <div class="title">${footerBig}</div>
+                <div class="subtitle">${footerSmall}</div>
+            `;
+
+            const imageContainer = document.createElement("div");
+            imageContainer.style.display = "flex";
+            imageContainer.style.flexWrap = "wrap";
+            imageContainer.style.justifyContent = "center";
+            imageContainer.style.marginTop = "10px";
+            imageContainer.style.gap = "10px";
+
+            items.forEach(item => {
+                const img = document.createElement("img");
+                img.src = item.img;
+                img.style.width = "48px";
+                img.style.height = "48px";
+                img.style.objectFit = "cover";
+                img.style.borderRadius = "4px";
+                imageContainer.appendChild(img);
+            });
+
+            footerRow.appendChild(footerText);
+            footerRow.appendChild(imageContainer);
+            container.appendChild(footerRow);
         });
 }
 
