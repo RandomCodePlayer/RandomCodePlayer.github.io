@@ -20,3 +20,7 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/df77
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/000559586ac684c9fdd67cefe889dabf46d9d603.jpg,Deadlocked,Coplete Deadlocked in normal mode,11
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/ea6e853ae2f649349872799846f924e33fbb27e1.jpg,Fingerdash,Complete Fingerdash in normal mode,21
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/bf6cae1f28a412b5ff5a8c096c7a4927ea249c84.jpg,Dash,Complete Dash in normal mode,22
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/0b55f56f6278c220dbed0af8f06fecfd15aa5e6e.jpg,The Tower,Complete Tower level 1,23
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/33a5fb5283c214c09b9c478f0bd03d44ec3a9078.jpg,The Sewers,Complete Tower level 2,13
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/a0580449d1d2ccb15879651f749c0910b237547b.jpg,The Cellar,Complete Tower level 3,12
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/041c04cf398fc6f847f2ee1d78937dfe2b153248.jpg,The Secret Hollow,Complete Tower level 4,9
