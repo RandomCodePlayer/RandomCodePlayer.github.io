@@ -140,7 +140,7 @@ function loadData(url) {
             const footerLine = lines[lines.length - 1];
             const normalLines = lines.slice(0, -1);
 
-            const footerParts = footerLine.split(",");
+            const footerParts = parseCSVLine(footerLine);
             const footerBig = footerParts[0];
             const footerSmall = footerParts[1];
             const footerOrder = footerParts[2].split(" ").map(n => parseInt(n));
