@@ -24,4 +24,4 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2851
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/eee8de4a6d751830ba93287febaff4769cab3dce.jpg,I love moons!,"Collect 8,000 moons",0
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/144a6bc08fccafa9b3376621c35bac620722161a.jpg,We are going to steal the moon,"Collect 9,000 moons",0
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/87279876ec87f32267af18074066bd5b1b2f229e.jpg,One giant leap for mankind,"Collect 10,000 moons",0
-"5 balls, 5 icons, 3 colors, 3 swings, 3 UFOs, 2 ships, 1 robot, 1 spider & 1 wave","Collect 10,000 moons",6 12 20 23 26 4 8 11 16 21 3 7 14 1 10 25 5 19 22 15 24 9 18 17
+"5 balls, 5 icons, 3 colors, 3 swings, 3 UFOs, 2 jetpacks, 2 ships, 1 robot, 1 spider & 1 wave","Collect 10,000 moons",6 12 20 23 26 4 8 11 16 21 3 7 14 1 10 25 5 19 22 3 12 15 24 9 18 17
