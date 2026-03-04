@@ -1,0 +1,3 @@
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/9226394d924b74228d73e667144fe806041035b3.jpg,New shinies!?!,Collect 100 diamonds,24
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/a9ce99dad73f8d0307dc5c385e98981bd9bd8986.jpg,Sparkle sparkle,Collect 250 diamonds,20
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/cef82af6554f2eea3d7eeda26ee6cbea3f92a90e.jpg,This is addictive,Collect 500 diamonds,16
