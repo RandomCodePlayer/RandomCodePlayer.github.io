@@ -137,12 +137,13 @@ function loadData(url) {
         .then(text => {
             const lines = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
 
-            const normalLines = lines.slice(0, -1);
             const footerLine = lines[lines.length - 1];
+            const normalLines = lines.slice(0, -1);
 
             const footerParts = footerLine.split(",");
             const footerBig = footerParts[0];
             const footerSmall = footerParts[1];
+            const footerOrder = footerParts[2].split(" ").map(n => parseInt(n));
 
             const items = normalLines
                 .filter(l => l.includes(","))
@@ -194,14 +195,17 @@ function loadData(url) {
             imageContainer.style.marginTop = "10px";
             imageContainer.style.gap = "10px";
 
-            items.forEach(item => {
-                const img = document.createElement("img");
-                img.src = item.img;
-                img.style.width = "48px";
-                img.style.height = "48px";
-                img.style.objectFit = "cover";
-                img.style.borderRadius = "4px";
-                imageContainer.appendChild(img);
+            footerOrder.forEach(num => {
+                const index = num - 1;
+                if (items[index]) {
+                    const img = document.createElement("img");
+                    img.src = items[index].img;
+                    img.style.width = "48px";
+                    img.style.height = "48px";
+                    img.style.objectFit = "cover";
+                    img.style.borderRadius = "4px";
+                    imageContainer.appendChild(img);
+                }
             });
 
             footerRow.appendChild(footerText);
