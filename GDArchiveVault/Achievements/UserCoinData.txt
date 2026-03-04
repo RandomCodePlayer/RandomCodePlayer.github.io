@@ -23,3 +23,18 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/0827
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/cb04bddd08b9ae7ecddc69c48fabd1290daee425.jpg,Who makes these?,Collect 250 user coins,3
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/95eb1c4e7c748df4a51c1cc10552d05846cdf276.jpg,"More coins, give reward",Collect 300 user coins,2
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/0f8c362b52348427a0905451f2b4488b135b8690.jpg,"Much coin, very wow",Collect 350 user coins,2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/5a34086afffe3b03c7c945f84d335f482747762b.jpg,Who has this many coins?,Collect 425 user coins,2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/129f65b77cc2c50c1670e47746ef853f47040d1a.jpg,Enough is enough,Collect 500 user coins,2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/50ad02eb4a618f842d282d38ccb6a53b730171b6.jpg,Stop collecting coins,Collect 600 user coins,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/9b086da18c5c5679e29f13b7c888a78d7c90852c.jpg,Y u take all coin?,Collect 700 user coins,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/ac0bd9fdead174a6bb24fd503f3223faba281efe.jpg,Can I have some?,Collect 800 user coins,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/8f3097ab9b1d6451dd1142d8cc4ff0e9fba855dc.jpg,"Congratulations, you have them all!",Collect 900 user coins,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/521c32eafbee7d0370cd36e05d5be38e8d6b43da.jpg,You have them all again! :O,"Collect 1,000 user coins",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/45a1d76cd853da36462226f31284f59b1f65d61a.jpg,Just kidding again!,"Collect 1,200 user coins",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/94dedd69f73a8dfabcb72e89d6733de52c141809.jpg,The other side of the coin,"Collect 1,400 user coins",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/06136cc00e0f071cb7d01aba0bf6ddc55014162c.jpg,Just a coin toss away,"Collect 1,600 user coins",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/aa77884fe9905f03a310c59f531ec999ccebb993.jpg,Almighty dollar,"Collect 1,800 user coins",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/92f812e26109169983abc14f317e053abed6b415.jpg,"Have fun, kid!","Collect 2,000 user coins",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/c6ccbe0eb2f2fd2d187a589500fe5c87f7972d17.jpg,Nickel and dime,"Collect 2,300 user coins",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/7bb6f27b722d753e53404c3bc0e2f2e83e5bb6f8.jpg,Heads or tails,"Collect 2,600 user coins",0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/6053f4f46d970b7816033a0bedb2a262b1f58d0a.jpg,Swag,"Collect 3,000 user coins",0
