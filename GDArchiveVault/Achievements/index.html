@@ -90,16 +90,16 @@
 <body>
 
 <div class="left-buttons">
-    <img onclick="loadData(STARS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/StarButton.png" alt="Stars">
-    <img onclick="loadData(MOONS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/MoonButton.png" alt="Moons">
-    <img onclick="loadData(DEMONS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/DemonButton.png" alt="Demons">
-    <img onclick="loadData(SECRET_COINS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/SecretCoinButton.png" alt="Secret Coins">
-    <img onclick="loadData(USER_COINS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/UserCoinButton.png" alt="User Coins">
-    <img onclick="loadData(DIAMONDS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/DiamondButton.png" alt="Diamonds">
-    <img onclick="loadData(MAIN_LEVELS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/MainLevelButton.png" alt="Main Levels">
+    <img onclick="loadData(STARS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/StarButton.png">
+    <img onclick="loadData(MOONS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/MoonButton.png">
+    <img onclick="loadData(DEMONS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/DemonButton.png">
+    <img onclick="loadData(SECRET_COINS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/SecretCoinButton.png">
+    <img onclick="loadData(USER_COINS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/UserCoinButton.png">
+    <img onclick="loadData(DIAMONDS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/DiamondButton.png">
+    <img onclick="loadData(MAIN_LEVELS)" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/MainLevelButton.png">
 </div>
 
-<img class="title-image" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/GDAchievements.png" alt="GD Achievements">
+<img class="title-image" src="https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Sprites/GDAchievements.png">
 
 <div id="container"></div>
 
@@ -112,59 +112,65 @@ const USER_COINS = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCod
 const DIAMONDS = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/DiamondData.txt";
 const MAIN_LEVELS = "https://raw.githubusercontent.com/RandomCodePlayer/RandomCodePlayer.github.io/refs/heads/main/GDArchiveVault/Achievements/MainLevelData.txt";
 
-function parseCSVLine(line) {
-    const result = [];
-    let current = "";
-    let inQuotes = false;
-    for (let i = 0; i < line.length; i++) {
-        const c = line[i];
-        if (c === '"') {
-            inQuotes = !inQuotes;
-        } else if (c === ',' && !inQuotes) {
-            result.push(current.trim());
-            current = "";
-        } else {
-            current += c;
-        }
+const TSA_URL = "https://gdachievements.bo6962456.workers.dev/";
+
+let TSA = null;
+
+function loadTSA() {
+    if (TSA) return Promise.resolve(TSA);
+    return fetch(TSA_URL).then(r => r.json()).then(j => TSA = j);
+}
+
+function parseCSV(line) {
+    const parts = [];
+    let cur = "";
+    let q = false;
+    for (let c of line) {
+        if (c === '"') q = !q;
+        else if (c === ',' && !q) { parts.push(cur.trim()); cur = ""; }
+        else cur += c;
     }
-    result.push(current.trim());
-    return result;
+    parts.push(cur.trim());
+    return parts;
 }
 
 function loadData(url) {
-    fetch(url)
-        .then(r => r.text())
-        .then(text => {
-            const lines = text.split("\n").map(l => l.trim()).filter(l => l.includes(","));
-            const items = lines.map(line => {
-                const p = parseCSVLine(line);
-                return {
-                    img: p[0],
-                    name: p[1],
-                    description: p[2],
-                    percent: parseFloat(p[3])
-                };
-            });
-
-            items.sort((a, b) => b.percent - a.percent);
-
-            const container = document.getElementById("container");
-            container.innerHTML = "";
-
-            items.forEach(item => {
-                const row = document.createElement("div");
-                row.className = "row";
-                row.innerHTML = `
-                    <img loading="lazy" src="${item.img}">
-                    <div class="text">
-                        <div class="title">${item.name}</div>
-                        <div class="subtitle">${item.description}</div>
-                    </div>
-                    <div class="percent">${item.percent}%</div>
-                `;
-                container.appendChild(row);
-            });
+    Promise.all([
+        loadTSA(),
+        fetch(url).then(r => r.text())
+    ]).then(([tsa, text]) => {
+        const lines = text.split("\n").map(x => x.trim()).filter(x => x.includes(","));
+        const items = lines.map(line => {
+            const p = parseCSV(line);
+            const name = p[1];
+            const t = tsa[name] || {};
+            return {
+                img: t.icon || p[0],
+                name: name,
+                description: t.description || p[2],
+                percent: t.percent || "0"
+            };
         });
+
+        items.sort((a, b) => parseFloat(b.percent) - parseFloat(a.percent));
+
+        const container = document.getElementById("container");
+        container.innerHTML = "";
+
+        items.forEach(item => {
+            const row = document.createElement("div");
+            row.className = "row";
+            row.innerHTML = `
+                <img loading="lazy" src="${item.img}">
+                <div class="text">
+                    <div class="title">${item.name}</div>
+                    <div class="subtitle">${item.description}</div>
+                </div>
+                <div class="percent">${item.percent}%</div>
+            `;
+            container.appendChild(row);
+        });
+    });
 }
 
 loadData(STARS);
