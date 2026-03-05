@@ -1,0 +1,11 @@
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/58c68b2af7d60738c69765591af31f21eb4f07a7.jpg,No Turning Back,Complete 5 rated insane levels in normal mode,13
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/f2e97a3c7f3a57034a2b2826dd03c8cc620f7dca.jpg,Resolve,Complete 10 rated insane levels in normal mode,7
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/f222c6e7ded25d5d1b6340ee25090ff96cb51613.jpg,Edge of Madness,Complete 25 rated insane levels in normal mode,3
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/dcf8847c91d3eb17c0e4c543d8b89fbba4d86e5c.jpg,Growing Insane,Complete 50 rated insane levels in normal mode,2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/6e3b51ba85e5e8afc28e854e2829d1827ca525aa.jpg,InsanitY,Complete 75 rated insane levels in normal mode,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/c39a3eb11ddaa1db18d027166ba45e3df5652538.jpg,Sanity Pending,Complete 100 rated insane levels in normal mode,1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/f6fd815c5410f02f0e075fe6ec95133469dcf749.jpg,I hear voices,Complete 200 rated insane levels in normal mode,0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/b85363821827701caf79c79d090ad38e343634a3.jpg,My head hurts,Complete 300 rated insane levels in normal mode,0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/736cb1916a4b57db31a91ad63282738c2ecd1c6f.jpg,You are INSANE,Complete 400 rated insane levels in normal mode,0
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2890a7b895415833c0aa7f5ff4a18865cf196637.jpg,Beyond Insanity,Complete 500 rated insane levels in normal mode,0
+"5 cubes, 1 ball, 1 ship, 1 spider, 1 UFO & 1 wave",Complete 500 rated insane levels in normal mode,1 2 4 6 8 3 7 9 10 5
