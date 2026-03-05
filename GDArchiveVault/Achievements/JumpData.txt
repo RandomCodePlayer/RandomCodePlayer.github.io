@@ -1,0 +1,12 @@
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2b00242aefd91fc6f50ddbd1fbbf1d7e0a552ce4.jpg,Bounce,"Jump 1,000 times",88
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/cfaed944399373d50356830f23ee9cc2333b7f16.jpg,I like jumping,"Jump 10,000 times",64
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/48cf0eff8f322f16611bedecf198ed48d1a7e60a.jpg,You jump like a pro!,"Jump 20,000 times",54
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/be5b1250b097dab283f140fbd9b36b13bd24020a.jpg,Hop Hop Hop,"Jump 50,000 times",43
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/40cc3de7ef3e931a3cd58d40ebb77bb0bcd6c6fc.jpg,Can't stop jumping!!!,"Jump 100,000 times",19
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/ad5238d0638bb2fc8616607f8041091b4190ca35.jpg,Jumper,"Jump 200,000 times",16
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/fb1821b387a4cef784431b8b21f0ba6e51b72b87.jpg,You need to rest...,"Jump 300,000 times",14
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/4875873f70abb860fe668f4e94c653f0f5f8b79a.jpg,Jumpman,"Jump 400,000 times",13
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/0a3626b6d1bf4c8290b4f7b1781f62ad5a4fccee.jpg,One hop this time,"Jump 500,000 times",12
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/ff2d2bd85f51876fe4bf5b156ce5e511e87a37d1.jpg,Leaps and bounds,"Jump 750,000 times",11
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/b24e2b09b3b794506555fed0b7a659710dba96a6.jpg,Jump King,"Jump 1,000,000 times",10
+"4 colors, 2 cubes, 2 waves, 1 ball, 1 swing & 1 UFO","Jump 1,000,000 times",1 2 3 6 7 9 8 10 4 11 5
