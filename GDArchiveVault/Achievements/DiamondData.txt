@@ -5,7 +5,7 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/9041
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d0eec332b0a1337258990f9133361e1ee17e3ac5.jpg,Can't stop my shine,"Collect 1,500 diamonds",10
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/4789e54c8cb3b978e39af139389bf82b45cf59ee.jpg,"One for you, ten for me","Collect 2,000 diamonds",9
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/769d53a9e391e48a9c9e8d0730a56a01d66a009f.jpg,How many can I carry?,"Collect 2,500 diamonds",7
-https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/48e5de7e91aa11b00f665046d41bd18a55fe8d28.jpg,House of Diamonds,"Collect 3,000 diamonds,6
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/48e5de7e91aa11b00f665046d41bd18a55fe8d28.jpg,House of Diamonds,"Collect 3,000 diamonds",6
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/ecdc6368422efe931eeee2d685430ed72b7d32f9.jpg,Diamond Castle,"Collect 4,000 diamonds",5
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/679f6f7594f9b83aa1a47c5fee395778df180ee6.jpg,Diamond Master,"Collect 5,000 diamonds",4
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/932348e98893dd4df2bdd8970648e7e34b6ba9b9.jpg,Diamond Grandmaster,"Collect 6,000 diamonds",3
@@ -16,3 +16,4 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d65f
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/6102b91304033fa4775a7e8a1e282f668bce8408.jpg,Iron pickaxe not required,"Collect 17,000 diamonds",1
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/877679b95e22c918a38026b87d1219b3bfc00718.jpg,Shine bright like a diamond,"Collect 20,000 diamonds",1
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/dd18e6f9f2ee089566b9e51c044aa2de2784301b.jpg,Diamond is Unbreakable,"Collect 25,000 diamonds",0
+"5 icons, 4 colors, 3 waves, 2 robots, 2 ships, 1 death effect, 1 UFO","Collect 25,000 diamonds",2 6 11 13 16 1 4 12 15 5 9 17 3 18 7 14 10 8
