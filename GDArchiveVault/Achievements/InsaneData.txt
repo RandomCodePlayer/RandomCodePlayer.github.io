@@ -8,4 +8,3 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/f6fd
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/b85363821827701caf79c79d090ad38e343634a3.jpg,My head hurts,Complete 300 rated insane levels in normal mode,0
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/736cb1916a4b57db31a91ad63282738c2ecd1c6f.jpg,You are INSANE,Complete 400 rated insane levels in normal mode,0
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/2890a7b895415833c0aa7f5ff4a18865cf196637.jpg,Beyond Insanity,Complete 500 rated insane levels in normal mode,0
-"5 cubes, 1 ball, 1 ship, 1 spider, 1 UFO & 1 wave",Complete 500 rated insane levels in normal mode,1 2 4 6 8 3 7 9 10 5
