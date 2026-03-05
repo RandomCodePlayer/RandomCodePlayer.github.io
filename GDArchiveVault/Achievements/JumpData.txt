@@ -9,4 +9,4 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/4875
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/0a3626b6d1bf4c8290b4f7b1781f62ad5a4fccee.jpg,One hop this time,"Jump 500,000 times",12
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/ff2d2bd85f51876fe4bf5b156ce5e511e87a37d1.jpg,Leaps and bounds,"Jump 750,000 times",11
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/b24e2b09b3b794506555fed0b7a659710dba96a6.jpg,Jump King,"Jump 1,000,000 times",10
-"4 colors, 2 cubes, 2 waves, 1 ball, 1 swing & 1 UFO","Jump 1,000,000 times",1 2 3 6 7 9 8 10 4 11 5
+"4 colors, 2 cubes, 2 waves, 1 ball, 1 swing & 1 UFO","Jump 1,000,000 times",1 2 3 6 7 9 8 10 5 11 4
