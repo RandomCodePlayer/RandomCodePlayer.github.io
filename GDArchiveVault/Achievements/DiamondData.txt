@@ -1,3 +1,18 @@
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/9226394d924b74228d73e667144fe806041035b3.jpg,New shinies!?!,Collect 100 diamonds,24
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/a9ce99dad73f8d0307dc5c385e98981bd9bd8986.jpg,Sparkle sparkle,Collect 250 diamonds,20
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/cef82af6554f2eea3d7eeda26ee6cbea3f92a90e.jpg,This is addictive,Collect 500 diamonds,16
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/90414f07e31b332da02f28d3739f64aca4c03eff.jpg,DIAMONDS,"Collect 1,000 diamonds",12
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d0eec332b0a1337258990f9133361e1ee17e3ac5.jpg,Can't stop my shine,"Collect 1,500 diamonds",10
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/4789e54c8cb3b978e39af139389bf82b45cf59ee.jpg,"One for you, ten for me","Collect 2,000 diamonds",9
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/769d53a9e391e48a9c9e8d0730a56a01d66a009f.jpg,How many can I carry?,"Collect 2,500 diamonds",7
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/48e5de7e91aa11b00f665046d41bd18a55fe8d28.jpg,House of Diamonds,"Collect 3,000 diamonds,6
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/ecdc6368422efe931eeee2d685430ed72b7d32f9.jpg,Diamond Castle,"Collect 4,000 diamonds",5
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/679f6f7594f9b83aa1a47c5fee395778df180ee6.jpg,Diamond Master,"Collect 5,000 diamonds",4
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/932348e98893dd4df2bdd8970648e7e34b6ba9b9.jpg,Diamond Grandmaster,"Collect 6,000 diamonds",3
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/df9eeb3549fb79b1c73494785d69f808fd99168c.jpg,Diamond MVP,"Collect 7,000 diamonds",3
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/b7630b1f313ccbd6ab66831593383560c19d7c8b.jpg,Diamond Legend,"Collect 9,000 diamonds",2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/6c7262eae6c9a80ab8c0ec95e6f796a32114cc08.jpg,The Diamond GOAT,"Collect 11,000 diamonds",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d65f040f26c5699fb0c8c120dc0733b8a429e8f4.jpg,I'ma buy a diamond ring for you,"Collect 14,000 diamonds",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/6102b91304033fa4775a7e8a1e282f668bce8408.jpg,Iron pickaxe not required,"Collect 17,000 diamonds",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/877679b95e22c918a38026b87d1219b3bfc00718.jpg,Shine bright like a diamond,"Collect 20,000 diamonds",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/dd18e6f9f2ee089566b9e51c044aa2de2784301b.jpg,Diamond is Unbreakable,"Collect 25,000 diamonds",0
