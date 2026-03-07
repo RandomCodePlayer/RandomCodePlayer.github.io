@@ -25,4 +25,4 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/99a8
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/320e03428cc993051396e870c06d4fe9339fe09b.jpg,Tarsorado Demon,Complete 350 demon difficulty levels in normal mode,0
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/0b7c343508a87dd7394e0c97b85c6c36d5e40a32.jpg,Insatiable bloodlust,Complete 400 demon difficuly levels in normal mode,0
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/46e5cbca871e769e759b645cef6ca73b27952de2.jpg,GG! :),Complete 500 demon difficulty levels in normal mode,0
-"9 icons, 5 ships, 3 balls, 3 robots, 2 colors, 2 waves, 1 UFO, 1 spider, 1 swing",Complete 500 demon difficulty levels in normal mode,1 2 3 4 9 20 22 24 27 5 6 7 12 25 8 10 16 13 19 21 14 18 15 26 11 23 17
+"9 cubes, 5 ships, 3 balls, 3 robots, 2 colors, 2 waves, 1 UFO, 1 spider, 1 swing",Complete 500 demon difficulty levels in normal mode,1 2 3 4 9 20 22 24 27 5 6 7 12 25 8 10 16 13 19 21 14 18 15 26 11 23 17
