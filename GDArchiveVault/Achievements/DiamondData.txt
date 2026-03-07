@@ -16,4 +16,4 @@ https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/d65f
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/6102b91304033fa4775a7e8a1e282f668bce8408.jpg,Iron pickaxe not required,"Collect 17,000 diamonds",1
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/877679b95e22c918a38026b87d1219b3bfc00718.jpg,Shine bright like a diamond,"Collect 20,000 diamonds",1
 https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/dd18e6f9f2ee089566b9e51c044aa2de2784301b.jpg,Diamond is Unbreakable,"Collect 25,000 diamonds",0
-"5 icons, 4 colors, 3 waves, 2 robots, 2 ships, 1 death effect, 1 UFO","Collect 25,000 diamonds",2 6 11 13 16 1 4 12 15 5 9 17 3 18 7 14 10 8
+"5 cubes, 4 colors, 3 waves, 2 robots, 2 ships, 1 death effect, 1 UFO","Collect 25,000 diamonds",2 6 11 13 16 1 4 12 15 5 9 17 3 18 7 14 10 8
