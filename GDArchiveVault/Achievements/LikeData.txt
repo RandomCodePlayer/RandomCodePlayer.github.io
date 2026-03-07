@@ -1,0 +1,8 @@
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/edf0bb56be97431352d6b68daf0bfcc8df9bef86.jpg,Helper,Like or dislike 1 online level,55
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/fc0f9fe5e321e7108ab79f7dfa72c73a3d1133b7.jpg,Cleric,Like or dislike 100 online levels,13
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/9cb4b876e710fd080bf79551579b7b5221f205d3.jpg,Watcher,Like or dislike 500 online levels,2
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/95843707a7ba55ac0c59ab340e552339b3da4643.jpg,Spymaste,"Like or dislike 1,000 online levels",5
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/accad29a3edfaa6cc7fcbe4e1d180f9af93b8352.jpg,The Happy One,"Like or dislike 2,000 online levels",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/411a0a6e0ecd436d87d566081f0cda0c038ff0a5.jpg,Your vote matters!,"Like or dislike 3,000 online levels",1
+https://cdn.fastly.steamstatic.com/steamcommunity/public/images/apps/322170/5c309e2a5ac373182604b34821bc253e6b0fc2c9.jpg,Critic,"Like or dislike 4,000 online levels",0
+"4 colors, 1 ball, 1 cube & 1 trail","Like or dislike 4,000 online levels",1 2 3 4 7 6 5
