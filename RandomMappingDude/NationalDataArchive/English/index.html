@@ -210,33 +210,34 @@
   </div>
 
   <script>
-    const CSV_URL = 'data/countries.csv'; // relative path in your repo
-    const FLAG_BASE_PATH = 'flags/';      // folder where flag images live
-    const FLAG_EXTENSION = '.png';        // change if you use .svg or .jpg
-
+    const CSV_URL =
+      'https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Data/CountryData.csv';
+  
+    const FLAG_BASE_PATH = 'Flags/';
+    const FLAG_EXTENSION = '.png';
+  
     async function fetchCSV(url) {
       const res = await fetch(url);
       if (!res.ok) throw new Error('Failed to load CSV: ' + res.status);
       return await res.text();
     }
-
+  
     function parseCSV(text) {
       const lines = text.trim().split(/\r?\n/);
       const headers = lines[0].split(',');
       const rows = [];
-
+  
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i];
         if (!line.trim()) continue;
-
-        // Simple CSV parser that respects quotes
+  
         const values = [];
         let current = '';
         let inQuotes = false;
-
+  
         for (let j = 0; j < line.length; j++) {
           const ch = line[j];
-          if (ch === '"' ) {
+          if (ch === '"') {
             inQuotes = !inQuotes;
           } else if (ch === ',' && !inQuotes) {
             values.push(current);
@@ -246,7 +247,7 @@
           }
         }
         values.push(current);
-
+  
         const obj = {};
         headers.forEach((h, idx) => {
           obj[h.trim()] = (values[idx] || '').trim();
@@ -255,26 +256,26 @@
       }
       return rows;
     }
-
+  
     function getLatestFlagFile(flagFilesField) {
       if (!flagFilesField) return null;
       const parts = flagFilesField.split(/\s+/).filter(Boolean);
       if (!parts.length) return null;
       return parts[parts.length - 1];
     }
-
+  
     function formatNumber(n) {
       if (!n) return '—';
       const num = Number(n);
       if (Number.isNaN(num)) return n;
       return num.toLocaleString();
     }
-
+  
     function createCountryCard(country, index) {
       const card = document.createElement('div');
       card.className = 'country-card';
       card.dataset.index = index;
-
+  
       const latestFlag = getLatestFlagFile(country['FlagFiles']);
       const img = document.createElement('img');
       img.className = 'country-flag';
@@ -284,19 +285,19 @@
       } else {
         img.alt = 'No flag available';
       }
-
+  
       const name = document.createElement('div');
       name.className = 'country-name';
       name.textContent = country['Country'];
-
+  
       const official = document.createElement('div');
       official.className = 'country-official';
       official.textContent = country['Official Name'];
-
+  
       card.appendChild(img);
       card.appendChild(name);
       card.appendChild(official);
-
+  
       card.addEventListener('click', () => {
         document
           .querySelectorAll('.country-card.active')
@@ -304,19 +305,19 @@
         card.classList.add('active');
         renderCountryDetails(country);
       });
-
+  
       return card;
     }
-
+  
     function renderCountryDetails(country) {
       const container = document.getElementById('country-details');
       container.innerHTML = '';
-
+  
       const latestFlag = getLatestFlagFile(country['FlagFiles']);
-
+  
       const header = document.createElement('div');
       header.className = 'details-header';
-
+  
       if (latestFlag) {
         const img = document.createElement('img');
         img.className = 'details-flag';
@@ -324,23 +325,23 @@
         img.alt = country['Country'] + ' flag';
         header.appendChild(img);
       }
-
+  
       const titleWrap = document.createElement('div');
       const title = document.createElement('h2');
       title.className = 'details-title';
       title.textContent = country['Country'];
-
+  
       const subtitle = document.createElement('p');
       subtitle.className = 'details-subtitle';
       subtitle.textContent = country['Official Name'];
-
+  
       titleWrap.appendChild(title);
       titleWrap.appendChild(subtitle);
       header.appendChild(titleWrap);
-
+  
       const grid = document.createElement('div');
       grid.className = 'details-grid';
-
+  
       const fields = [
         { label: 'GDP', value: country['GDP'], format: v => '$ ' + formatNumber(v) },
         { label: 'Population', value: country['Population'], format: formatNumber },
@@ -349,18 +350,18 @@
         { label: 'GDP per capita', value: country['GDP Per Capita'], format: v => '$ ' + formatNumber(v) },
         { label: 'Borders', value: country['Borders'], isBorders: true }
       ];
-
+  
       fields.forEach(field => {
         const card = document.createElement('div');
         card.className = 'detail-card';
-
+  
         const label = document.createElement('div');
         label.className = 'detail-label';
         label.textContent = field.label;
-
+  
         const value = document.createElement('div');
         value.className = 'detail-value';
-
+  
         if (field.isBorders) {
           value.classList.add('borders');
           const borders = (field.value || '').split(/\s+/).filter(Boolean);
@@ -377,31 +378,30 @@
           const raw = field.value || '—';
           value.textContent = field.format ? field.format(raw) : raw;
         }
-
+  
         card.appendChild(label);
         card.appendChild(value);
         grid.appendChild(card);
       });
-
+  
       container.appendChild(header);
       container.appendChild(grid);
     }
-
+  
     async function init() {
       const listEl = document.getElementById('country-list');
       const detailsEl = document.getElementById('country-details');
-
+  
       try {
         const csvText = await fetchCSV(CSV_URL);
         const countries = parseCSV(csvText);
-
+  
         countries.forEach((country, idx) => {
           const card = createCountryCard(country, idx);
           listEl.appendChild(card);
         });
-
+  
         if (countries.length > 0) {
-          // Auto-select first country
           const firstCard = listEl.querySelector('.country-card');
           if (firstCard) firstCard.click();
         }
@@ -413,7 +413,7 @@
         `;
       }
     }
-
+  
     init();
   </script>
 </body>
