@@ -5,24 +5,27 @@
 <title>National Data Archive</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;display:flex;min-height:100vh;background:#0f172a;color:#e5e7eb;overflow:hidden}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;display:flex;min-height:100vh;background:#0f172a;color:#e5e7eb;overflow:hidden;scrollbar-width:none}
+body::-webkit-scrollbar{display:none}
 header{position:fixed;top:0;left:0;right:0;padding:.75rem 1.5rem;background:rgba(15,23,42,.95);border-bottom:1px solid #1f2937;display:flex;justify-content:space-between;align-items:center;z-index:10}
 header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af}
 .container{display:flex;width:100%;margin-top:3.25rem;height:calc(100vh - 3.25rem)}
-.sidebar{width:320px;max-width:100%;border-right:1px solid #1f2937;background:#020617;overflow-y:auto;padding:1rem;box-sizing:border-box}
+.sidebar{width:320px;max-width:100%;border-right:1px solid #1f2937;background:#020617;overflow-y:auto;padding:1rem;box-sizing:border-box;scrollbar-width:none}
+.sidebar::-webkit-scrollbar{display:none}
 .sidebar-search{margin-bottom:.75rem}
 .sidebar-search input{width:100%;padding:.4rem .6rem;border-radius:.35rem;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:.85rem}
 .sidebar-search input:focus{outline:none;border-color:#3b82f6}
-.content{flex:1;padding:1.5rem;overflow-y:auto;box-sizing:border-box}
+.content{flex:1;padding:1.5rem;overflow-y:auto;box-sizing:border-box;scrollbar-width:none}
+.content::-webkit-scrollbar{display:none}
 .country-card{display:flex;flex-direction:column;align-items:center;padding:.75rem;margin-bottom:.75rem;border-radius:.5rem;background:#020617;border:1px solid transparent;cursor:pointer;transition:border-color .15s,background-color .15s,transform .1s}
 .country-card:hover{border-color:#3b82f6;background:#020617;transform:translateY(-1px)}
 .country-card.active{border-color:#60a5fa;background:#020617}
-.country-flag{width:100%;max-width:220px;aspect-ratio:4/3;object-fit:cover;border-radius:.35rem;border:1px solid #1f2937;background:#020617}
+.country-flag{width:100%;max-width:220px;height:auto;object-fit:contain;border-radius:.35rem;border:1px solid #1f2937;background:#020617}
 .country-name{margin-top:.5rem;font-weight:600;font-size:.95rem;text-align:center;color:#e5e7eb}
 .country-official{font-size:.75rem;color:#9ca3af;text-align:center}
 .placeholder{color:#6b7280;font-size:.95rem;margin-top:2rem}
 .details-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
-.details-flag{width:180px;max-width:40%;aspect-ratio:4/3;object-fit:cover;border-radius:.5rem;border:1px solid #1f2937;background:#020617}
+.details-flag{width:100%;max-width:260px;height:auto;object-fit:contain;border-radius:.5rem;border:1px solid #1f2937;background:#020617}
 .details-title{font-size:1.5rem;margin:0;color:#f9fafb}
 .details-subtitle{margin:.25rem 0 0;color:#9ca3af;font-size:.9rem}
 .details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
@@ -36,7 +39,7 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 .history-section-title{font-size:1rem;margin:0 0 .75rem;color:#e5e7eb}
 .history-grid{display:flex;flex-direction:column;gap:.75rem}
 .history-item{display:flex;align-items:center;gap:.75rem;background:#020617;border-radius:.5rem;border:1px solid #1f2937;padding:.5rem .75rem}
-.history-flag{width:90px;aspect-ratio:4/3;object-fit:cover;border-radius:.35rem;border:1px solid #1f2937;background:#020617}
+.history-flag{width:120px;height:auto;object-fit:contain;border-radius:.35rem;border:1px solid #1f2937;background:#020617}
 .history-text{display:flex;flex-direction:column;font-size:.85rem}
 .history-range{color:#e5e7eb}
 .history-dynasty{color:#9ca3af;font-size:.8rem}
@@ -130,15 +133,19 @@ return FLAG_BASE_ROOT+countryFolderName(countryName)+"/Historical/"+fileBase+FLA
 function parseFlagMeta(fileBase){
 const base=fileBase.replace(/\.[^.]+$/,"");
 const parts=base.split("_");
-const range=parts[1]||"";
-const dynasty=parts[2]||"";
-return{range,dynasty};
+const countryPart=parts[0]||"";
+const rangePart=parts[1]||"";
+const ownerPart=parts[2]||"";
+const countryName=countryPart.replace(/-/g," ");
+const range=rangePart;
+const dynasty=ownerPart?ownerPart.replace(/-/g," "):"";
+return{countryName,range,dynasty};
 }
 
-function isOwnedFlag(fileBase){
+function isOccupiedFlag(fileBase){
 const base=fileBase.replace(/\.[^.]+$/,"");
-const count=(base.match(/_/g)||[]).length;
-return count>=2;
+const parts=base.split("_");
+return parts.length>=3;
 }
 
 function createCountryCard(country,index){
@@ -176,7 +183,7 @@ const latestFlag=getLatestFlagFile(country["FlagFiles"]);
 const header=document.createElement("div");
 header.className="details-header";
 if(latestFlag){
-const owned=isOwnedFlag(latestFlag);
+const occupied=isOccupiedFlag(latestFlag);
 const wrap=document.createElement("div");
 wrap.className="flag-wrapper";
 const img=document.createElement("img");
@@ -184,10 +191,10 @@ img.className="details-flag";
 img.src=buildFlagUrl(country["Country"],latestFlag);
 img.alt=country["Country"]+" flag";
 wrap.appendChild(img);
-if(owned){
+if(occupied){
 const tag=document.createElement("div");
 tag.className="flag-tag";
-tag.textContent="Owned";
+tag.textContent="Occupied";
 wrap.appendChild(tag);
 }
 header.appendChild(wrap);
@@ -261,7 +268,7 @@ rangeEl.className="history-range";
 rangeEl.textContent=meta.range||"Unknown period";
 const dynEl=document.createElement("div");
 dynEl.className="history-dynasty";
-dynEl.textContent=meta.dynasty?meta.dynasty.replace(/-/g," "):"";
+dynEl.textContent=meta.dynasty?meta.dynasty:"";
 textWrap.appendChild(rangeEl);
 if(meta.dynasty)textWrap.appendChild(dynEl);
 item.appendChild(img);
@@ -289,7 +296,6 @@ if(first)first.click();
 }
 
 async function init(){
-const list=document.getElementById("country-list");
 const details=document.getElementById("country-details");
 try{
 const csv=await fetchCSV(CSV_URL);
