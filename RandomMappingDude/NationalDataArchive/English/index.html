@@ -5,12 +5,15 @@
 <title>National Data Archive</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;display:flex;min-height:100vh;background:#0f172a;color:#e5e7eb}
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;display:flex;min-height:100vh;background:#0f172a;color:#e5e7eb;overflow:hidden}
 header{position:fixed;top:0;left:0;right:0;padding:.75rem 1.5rem;background:rgba(15,23,42,.95);border-bottom:1px solid #1f2937;display:flex;justify-content:space-between;align-items:center;z-index:10}
 header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af}
-.container{display:flex;width:100%;margin-top:3.25rem}
-.sidebar{width:320px;max-width:100%;border-right:1px solid #1f2937;background:#020617;overflow-y:auto;padding:1rem}
-.content{flex:1;padding:1.5rem;overflow-y:auto}
+.container{display:flex;width:100%;margin-top:3.25rem;height:calc(100vh - 3.25rem)}
+.sidebar{width:320px;max-width:100%;border-right:1px solid #1f2937;background:#020617;overflow-y:auto;padding:1rem;box-sizing:border-box}
+.sidebar-search{margin-bottom:.75rem}
+.sidebar-search input{width:100%;padding:.4rem .6rem;border-radius:.35rem;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:.85rem}
+.sidebar-search input:focus{outline:none;border-color:#3b82f6}
+.content{flex:1;padding:1.5rem;overflow-y:auto;box-sizing:border-box}
 .country-card{display:flex;flex-direction:column;align-items:center;padding:.75rem;margin-bottom:.75rem;border-radius:.5rem;background:#020617;border:1px solid transparent;cursor:pointer;transition:border-color .15s,background-color .15s,transform .1s}
 .country-card:hover{border-color:#3b82f6;background:#020617;transform:translateY(-1px)}
 .country-card.active{border-color:#60a5fa;background:#020617}
@@ -22,7 +25,7 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 .details-flag{width:180px;max-width:40%;aspect-ratio:4/3;object-fit:cover;border-radius:.5rem;border:1px solid #1f2937;background:#020617}
 .details-title{font-size:1.5rem;margin:0;color:#f9fafb}
 .details-subtitle{margin:.25rem 0 0;color:#9ca3af;font-size:.9rem}
-.details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
 .detail-card{background:#020617;border-radius:.5rem;border:1px solid #1f2937;padding:.75rem .9rem}
 .detail-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;margin-bottom:.25rem}
 .detail-value{font-size:.95rem;color:#e5e7eb;word-wrap:break-word;white-space:pre-wrap}
@@ -30,8 +33,15 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 .error{color:#f97373;font-size:.9rem;margin-top:1rem}
 .flag-wrapper{position:relative;display:inline-block}
 .flag-tag{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.65);padding:3px 6px;font-size:.7rem;border-radius:4px;color:#fff;text-transform:uppercase;letter-spacing:.05em}
+.history-section-title{font-size:1rem;margin:0 0 .75rem;color:#e5e7eb}
+.history-grid{display:flex;flex-direction:column;gap:.75rem}
+.history-item{display:flex;align-items:center;gap:.75rem;background:#020617;border-radius:.5rem;border:1px solid #1f2937;padding:.5rem .75rem}
+.history-flag{width:90px;aspect-ratio:4/3;object-fit:cover;border-radius:.35rem;border:1px solid #1f2937;background:#020617}
+.history-text{display:flex;flex-direction:column;font-size:.85rem}
+.history-range{color:#e5e7eb}
+.history-dynasty{color:#9ca3af;font-size:.8rem}
 @media(max-width:800px){
-.container{flex-direction:column}
+.container{flex-direction:column;height:auto}
 .sidebar{width:100%;max-height:260px;border-right:none;border-bottom:1px solid #1f2937}
 .details-header{flex-direction:column;align-items:flex-start}
 .details-flag{width:100%;max-width:260px}
@@ -44,7 +54,12 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 </header>
 
 <div class="container">
-<aside class="sidebar" id="country-list"></aside>
+<aside class="sidebar">
+<div class="sidebar-search">
+<input type="text" id="search" placeholder="Search countries">
+</div>
+<div id="country-list"></div>
+</aside>
 <main class="content" id="country-details">
 <p class="placeholder">Select a country from the list to view its full data.</p>
 </main>
@@ -52,7 +67,7 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 
 <script>
 const CSV_URL="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Data/CountryData.csv";
-const FLAG_BASE_PATH="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Flags/CountryFlags/";
+const FLAG_BASE_ROOT="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Flags/CountryFlags/";
 const FLAG_EXTENSION=".webp";
 
 async function fetchCSV(url){
@@ -92,11 +107,38 @@ if(!parts.length)return null;
 return parts[parts.length-1];
 }
 
+function getAllFlagFiles(field){
+if(!field)return[];
+return field.split(/\s+/).filter(Boolean);
+}
+
 function formatNumber(n){
 if(!n)return"—";
 const num=Number(n);
 if(Number.isNaN(num))return n;
 return num.toLocaleString();
+}
+
+function countryFolderName(name){
+return name.replace(/\s+/g,"-");
+}
+
+function buildFlagUrl(countryName,fileBase){
+return FLAG_BASE_ROOT+countryFolderName(countryName)+"/Historical/"+fileBase+FLAG_EXTENSION;
+}
+
+function parseFlagMeta(fileBase){
+const base=fileBase.replace(/\.[^.]+$/,"");
+const parts=base.split("_");
+const range=parts[1]||"";
+const dynasty=parts[2]||"";
+return{range,dynasty};
+}
+
+function isOwnedFlag(fileBase){
+const base=fileBase.replace(/\.[^.]+$/,"");
+const count=(base.match(/_/g)||[]).length;
+return count>=2;
 }
 
 function createCountryCard(country,index){
@@ -107,7 +149,7 @@ const latestFlag=getLatestFlagFile(country["FlagFiles"]);
 const img=document.createElement("img");
 img.className="country-flag";
 if(latestFlag){
-img.src=FLAG_BASE_PATH+country["Country"]+"/Historical/"+latestFlag+FLAG_EXTENSION;
+img.src=buildFlagUrl(country["Country"],latestFlag);
 img.alt=country["Country"]+" flag";
 }else img.alt="No flag available";
 const name=document.createElement("div");
@@ -134,14 +176,12 @@ const latestFlag=getLatestFlagFile(country["FlagFiles"]);
 const header=document.createElement("div");
 header.className="details-header";
 if(latestFlag){
-const base=latestFlag.replace(/\.[^.]+$/,"");
-const count=(base.match(/_/g)||[]).length;
-const owned=count>=2;
+const owned=isOwnedFlag(latestFlag);
 const wrap=document.createElement("div");
 wrap.className="flag-wrapper";
 const img=document.createElement("img");
 img.className="details-flag";
-img.src=FLAG_BASE_PATH+country["Country"]+"/Historical/"+latestFlag+FLAG_EXTENSION;
+img.src=buildFlagUrl(country["Country"],latestFlag);
 img.alt=country["Country"]+" flag";
 wrap.appendChild(img);
 if(owned){
@@ -199,6 +239,53 @@ grid.appendChild(card);
 });
 container.appendChild(header);
 container.appendChild(grid);
+const historyFiles=getAllFlagFiles(country["FlagFiles"]);
+if(historyFiles.length){
+const historyTitle=document.createElement("h3");
+historyTitle.className="history-section-title";
+historyTitle.textContent="Historical Flags";
+const historyGrid=document.createElement("div");
+historyGrid.className="history-grid";
+historyFiles.forEach(fileBase=>{
+const item=document.createElement("div");
+item.className="history-item";
+const img=document.createElement("img");
+img.className="history-flag";
+img.src=buildFlagUrl(country["Country"],fileBase);
+img.alt=country["Country"]+" historical flag";
+const meta=parseFlagMeta(fileBase);
+const textWrap=document.createElement("div");
+textWrap.className="history-text";
+const rangeEl=document.createElement("div");
+rangeEl.className="history-range";
+rangeEl.textContent=meta.range||"Unknown period";
+const dynEl=document.createElement("div");
+dynEl.className="history-dynasty";
+dynEl.textContent=meta.dynasty?meta.dynasty.replace(/-/g," "):"";
+textWrap.appendChild(rangeEl);
+if(meta.dynasty)textWrap.appendChild(dynEl);
+item.appendChild(img);
+item.appendChild(textWrap);
+historyGrid.appendChild(item);
+});
+container.appendChild(historyTitle);
+container.appendChild(historyGrid);
+}
+}
+
+let allCountries=[];
+
+function renderCountryList(filter){
+const list=document.getElementById("country-list");
+list.innerHTML="";
+const q=(filter||"").toLowerCase();
+allCountries.forEach((country,idx)=>{
+if(!q||country["Country"].toLowerCase().includes(q)){
+list.appendChild(createCountryCard(country,idx));
+}
+});
+const first=list.querySelector(".country-card");
+if(first)first.click();
 }
 
 async function init(){
@@ -206,15 +293,15 @@ const list=document.getElementById("country-list");
 const details=document.getElementById("country-details");
 try{
 const csv=await fetchCSV(CSV_URL);
-const countries=parseCSV(csv);
-countries.forEach((c,i)=>list.appendChild(createCountryCard(c,i)));
-if(countries.length>0){
-const first=list.querySelector(".country-card");
-if(first)first.click();
-}
+allCountries=parseCSV(csv);
+renderCountryList("");
 }catch(e){
 details.innerHTML="<p class='placeholder'>Could not load country data.</p><p class='error'>"+e.message+"</p>";
 }
+const search=document.getElementById("search");
+search.addEventListener("input",e=>{
+renderCountryList(e.target.value);
+});
 }
 
 init();
