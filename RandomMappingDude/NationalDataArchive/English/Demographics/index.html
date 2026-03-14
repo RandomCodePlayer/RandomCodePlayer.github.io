@@ -25,12 +25,12 @@ header{
 header h1{
   margin:0;
   font-size:1rem;
-  letter-spacing:.08em;
+  letter-spacing:.15em;
   text-transform:uppercase;
   color:#9ca3af;
 }
 
-/* Updated: same grey as earlier */
+/* Subheadings same grey as earlier */
 .section-header{
   text-align:center;
   font-size:2rem;
@@ -45,6 +45,7 @@ header h1{
   padding:1rem 1.5rem;
 }
 
+/* Stack demographics vertically */
 .cards{
   display:flex;
   flex-direction:column;
@@ -77,13 +78,13 @@ header h1{
 <body>
 
 <header>
-<h1>National Data Archive</h1>
+<h1>National Data Archive — Global Statistics</h1>
 </header>
 
 <div id="stats"></div>
 
 <script>
-const CSV_URL = "https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Data/DemographicData.csv";
+const CSV_URL = "YOUR_CSV_URL_HERE";
 
 /* Format full number with commas */
 function formatFullNumber(num){
@@ -98,9 +99,6 @@ function parseHumanNumber(str){
   if(/^\d+(\.\d+)?b$/.test(str)) return parseFloat(str)*1_000_000_000;
   if(/^\d+(\.\d+)?m$/.test(str)) return parseFloat(str)*1_000_000;
   if(/^\d+(\.\d+)?k$/.test(str)) return parseFloat(str)*1_000;
-
-  // If it's a date, return Date object
-  if(/^\d{4}-\d{2}-\d{2}$/.test(str)) return new Date(str);
 
   return Number(str);
 }
@@ -117,33 +115,37 @@ function computeValue(per, type){
   const now = new Date();
   const base = new Date("2025-01-01T00:00:00Z");
 
-  // DATE-BASED TYPES
-  if(per instanceof Date){
-    const diffDays = (per - base) / (1000*60*60*24);
+  const secondsSinceBase = (now - base) / 1000;
+  const daysSinceBase = secondsSinceBase / 86400;
+  const yearsSinceBase = daysSinceBase / 365;
 
-    if(type === "daydown") return diffDays;
-    if(type === "daysince") return -diffDays;
-
-    if(type === "yeardown") return diffDays / 365;
-    if(type === "yearsince") return -diffDays / 365;
-
-    return 0;
-  }
-
-  // RATE-BASED TYPES
   if(type === "year"){
     const yearStart = new Date("2026-01-01T00:00:00Z");
     const elapsedSeconds = (now - yearStart) / 1000;
-    const perSecond = per / (365 * 24 * 60 * 60);
-    return perSecond * elapsedSeconds;
+    return (per / (365*24*60*60)) * elapsedSeconds;
   }
 
   if(type === "day"){
     const midnight = new Date(now);
     midnight.setHours(0,0,0,0);
     const elapsedSeconds = (now - midnight) / 1000;
-    const perSecond = per / (24 * 60 * 60);
-    return perSecond * elapsedSeconds;
+    return (per / 86400) * elapsedSeconds;
+  }
+
+  if(type === "yeardown"){
+    return per - yearsSinceBase;
+  }
+
+  if(type === "daydown"){
+    return per - daysSinceBase;
+  }
+
+  if(type === "yearsince"){
+    return per + yearsSinceBase;
+  }
+
+  if(type === "daysince"){
+    return per + daysSinceBase;
   }
 
   return per;
