@@ -8,9 +8,18 @@
 body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;background:#0f172a;color:#e5e7eb;overflow-x:hidden}
 header{padding:1rem 1.5rem;background:#020617;border-bottom:1px solid #1f2937;position:sticky;top:0;z-index:10}
 header h1{margin:0;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af}
+
+.section-header{
+  text-align:center;
+  font-size:1.2rem;
+  margin:2rem 0 1rem;
+  color:#9ca3af;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
 .container{padding:1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
 .card{background:#020617;border:1px solid #1f2937;border-radius:.5rem;padding:1rem;display:flex;flex-direction:column;gap:.5rem}
-.card-category{font-size:.75rem;text-transform:uppercase;color:#9ca3af;letter-spacing:.08em}
 .card-value{font-size:1.6rem;font-weight:600;color:#f9fafb}
 .card-name{font-size:.9rem;color:#e5e7eb}
 </style>
@@ -21,7 +30,7 @@ header h1{margin:0;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;
 <h1>National Data Archive — Global Statistics</h1>
 </header>
 
-<div class="container" id="stats"></div>
+<div id="stats"></div>
 
 <script>
 const CSV_URL = "https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Data/DemographicData.csv";
@@ -45,6 +54,17 @@ function shortenNumber(num){
     return (v.endsWith(".0")?v.slice(0,-2):v)+" Thousand";
   }
   return num.toString();
+}
+
+/* Parse human-friendly numbers */
+function parseHumanNumber(str){
+  str = str.trim().toLowerCase();
+
+  if(/^\d+(\.\d+)?b$/.test(str)) return parseFloat(str)*1_000_000_000;
+  if(/^\d+(\.\d+)?m$/.test(str)) return parseFloat(str)*1_000_000;
+  if(/^\d+(\.\d+)?k$/.test(str)) return parseFloat(str)*1_000;
+
+  return Number(str);
 }
 
 /* CSV Loader */
@@ -81,13 +101,23 @@ async function init(){
   const rows = await loadCSV(CSV_URL);
   const container = document.getElementById("stats");
 
+  let lastCategory = null;
+
   rows.forEach(r=>{
     const category = r[0];
-    const per = Number(r[1]);
+    const per = parseHumanNumber(r[1]);
     const type = r[2].trim().toLowerCase();
     const name = r[3];
     const prefix = r[4] || "";
     const suffix = r[5] || "";
+
+    if(category !== lastCategory){
+      const header = document.createElement("h2");
+      header.className = "section-header";
+      header.textContent = category;
+      container.appendChild(header);
+      lastCategory = category;
+    }
 
     const current = computeValue(per, type);
     const display = prefix + " " + shortenNumber(current) + " " + suffix;
@@ -96,7 +126,6 @@ async function init(){
     card.className = "card";
 
     card.innerHTML = `
-      <div class="card-category">${category}</div>
       <div class="card-value">${display}</div>
       <div class="card-name">${name}</div>
     `;
