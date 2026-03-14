@@ -176,6 +176,30 @@ function createCountryCard(country,index){
   return card;
 }
 
+function shortenNumber(num) {
+  num = Number(num);
+  if (isNaN(num)) return num;
+
+  const abs = Math.abs(num);
+
+  if (abs >= 1_000_000_000) {
+    const val = (num / 1_000_000_000).toFixed(1);
+    return (val.endsWith(".0") ? val.slice(0, -2) : val) + " Billion";
+  }
+
+  if (abs >= 1_000_000) {
+    const val = (num / 1_000_000).toFixed(1);
+    return (val.endsWith(".0") ? val.slice(0, -2) : val) + " Million";
+  }
+
+  if (abs >= 1_000) {
+    const val = (num / 1_000).toFixed(1);
+    return (val.endsWith(".0") ? val.slice(0, -2) : val) + " Thousand";
+  }
+
+  return num.toString();
+}
+  
 function renderCountryDetails(country){
   const container=document.getElementById("country-details");
   container.innerHTML="";
@@ -219,13 +243,13 @@ function renderCountryDetails(country){
   const grid=document.createElement("div");
   grid.className="details-grid";
 
-  const fields=[
-    {label:"GDP",value:country["GDP"]},
-    {label:"Population",value:country["Population"]},
-    {label:"Currency",value:country["Currency"]},
-    {label:"Official language(s)",value:country["Official Language(s)"],languages:true},
-    {label:"GDP per capita",value:country["GDP Per Capita"]},
-    {label:"Borders",value:country["Borders"],borders:true}
+  const fields = [
+    { label: "GDP", value: country["GDP"], money: true },
+    { label: "Population", value: country["Population"], numeric: true },
+    { label: "Currency", value: country["Currency"] },
+    { label: "Official language(s)", value: country["Official Language(s)"], languages: true },
+    { label: "GDP per capita", value: country["GDP Per Capita"], money: true },
+    { label: "Borders", value: country["Borders"], borders: true }
   ];
 
   fields.forEach(field=>{
@@ -284,8 +308,15 @@ function renderCountryDetails(country){
         });
       }
 
+    } else if (field.money) {
+      const shortened = shortenNumber(field.value);
+      value.textContent = "$ " + shortened;
+    
+    } else if (field.numeric) {
+      value.textContent = shortenNumber(field.value);
+    
     } else {
-      value.textContent=field.value||"—";
+      value.textContent = field.value || "—";
     }
 
     card.appendChild(label);
