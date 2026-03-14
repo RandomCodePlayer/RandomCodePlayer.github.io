@@ -32,8 +32,7 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 .detail-card{background:#020617;border-radius:.5rem;border:1px solid #1f2937;padding:.75rem .9rem}
 .detail-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;margin-bottom:.25rem}
 .detail-value{font-size:.95rem;white-space:pre-wrap}
-.borders span{display:inline-block;background:#020617;border-radius:999px;border:1px solid #1f2937;padding:.15rem .6rem;font-size:.8rem;margin:.1rem .2rem .1rem 0}
-.error{color:#f97373;font-size:.9rem;margin-top:1rem}
+.borders span{display:inline-block;background:#020617;border-radius:999px;border:1px solid #1f2937;padding:.15rem .6rem;font-size:.8rem;margin:.1rem .2rem .1rem 0;cursor:pointer}
 .flag-wrapper{position:relative;display:inline-block;max-width:100%}
 .flag-tag{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.65);padding:3px 6px;font-size:.7rem;border-radius:4px;color:#fff;text-transform:uppercase;letter-spacing:.05em}
 .history-section-title{font-size:1rem;margin:0 0 .75rem}
@@ -63,6 +62,7 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 </div>
 <div id="country-list"></div>
 </aside>
+
 <main class="content" id="country-details">
 <p class="placeholder">Select a country from the list to view its full data.</p>
 </main>
@@ -105,8 +105,7 @@ function parseCSV(text){
 function getLatestFlagFile(field){
   if(!field)return null;
   const parts=field.split(/\s+/).filter(Boolean);
-  if(!parts.length)return null;
-  return parts[parts.length-1];
+  return parts[parts.length-1]||null;
 }
 
 function getAllFlagFiles(field){
@@ -118,171 +117,225 @@ function countryFolderName(name){
   return name.replace(/\s+/g,"-");
 }
 
-function buildFlagUrl(country,fileBase){
-  return FLAG_BASE_ROOT+countryFolderName(country)+"/Historical/"+fileBase+FLAG_EXTENSION;
+function buildFlagUrl(country,file){
+  return FLAG_BASE_ROOT+countryFolderName(country)+"/Historical/"+file+FLAG_EXTENSION;
 }
 
-function parseFlagMeta(fileBase){
-  const base=fileBase.replace(/\.[^.]+$/,"");
+function parseFlagMeta(file){
+  const base=file.replace(/\.[^.]+$/,"");
   const parts=base.split("_");
+
   if(parts.length===1){
-    return{
-      country:parts[0].replace(/-/g," "),
-      range:"",
-      dynasty:""
-    };
+    return{country:parts[0].replace(/-/g," "),range:"",dynasty:""};
   }
+
   if(parts.length===2){
-    return{
-      country:parts[0].replace(/-/g," "),
-      range:parts[1],
-      dynasty:""
-    };
+    return{country:parts[0].replace(/-/g," "),range:parts[1],dynasty:""};
   }
+
   const dynasty=parts[parts.length-1].replace(/-/g," ");
   const range=parts[parts.length-2];
   const country=parts.slice(0,parts.length-2).join(" ").replace(/-/g," ");
+
   return{country,range,dynasty};
 }
 
-function isOccupiedFlag(fileBase){
-  const base=fileBase.replace(/\.[^.]+$/,"");
-  const parts=base.split("_");
-  return parts.length>=3;
+function isOccupied(file){
+  return file.split("_").length>=3;
 }
 
 function createCountryCard(country,index){
   const card=document.createElement("div");
   card.className="country-card";
   card.dataset.index=index;
-  const latestFlag=getLatestFlagFile(country["FlagFiles"]);
+
+  const latest=getLatestFlagFile(country["FlagFiles"]);
   const img=document.createElement("img");
   img.className="country-flag";
-  if(latestFlag){
-    img.src=buildFlagUrl(country["Country"],latestFlag);
-    img.alt=country["Country"]+" flag";
-  }else{
-    img.alt="No flag available";
-  }
+  img.src=buildFlagUrl(country["Country"],latest);
+
   const name=document.createElement("div");
   name.className="country-name";
   name.textContent=country["Country"];
+
   const official=document.createElement("div");
   official.className="country-official";
   official.textContent=country["Official Name"];
+
   card.appendChild(img);
   card.appendChild(name);
   card.appendChild(official);
-  card.addEventListener("click",()=>{
-    document.querySelectorAll(".country-card.active").forEach(el=>el.classList.remove("active"));
+
+  card.onclick=()=>{
+    document.querySelectorAll(".country-card.active").forEach(e=>e.classList.remove("active"));
     card.classList.add("active");
     renderCountryDetails(country);
-  });
+    card.scrollIntoView({behavior:"smooth",block:"center"});
+  };
+
   return card;
 }
 
 function renderCountryDetails(country){
   const container=document.getElementById("country-details");
   container.innerHTML="";
-  const latestFlag=getLatestFlagFile(country["FlagFiles"]);
+
+  const latest=getLatestFlagFile(country["FlagFiles"]);
   const header=document.createElement("div");
   header.className="details-header";
-  if(latestFlag){
+
+  if(latest){
     const wrap=document.createElement("div");
     wrap.className="flag-wrapper";
+
     const img=document.createElement("img");
     img.className="details-flag";
-    img.src=buildFlagUrl(country["Country"],latestFlag);
-    img.alt=country["Country"]+" flag";
+    img.src=buildFlagUrl(country["Country"],latest);
     wrap.appendChild(img);
-    if(isOccupiedFlag(latestFlag)){
+
+    if(isOccupied(latest)){
       const tag=document.createElement("div");
       tag.className="flag-tag";
       tag.textContent="Occupied";
       wrap.appendChild(tag);
     }
+
     header.appendChild(wrap);
   }
+
   const titleWrap=document.createElement("div");
   const title=document.createElement("h2");
   title.className="details-title";
   title.textContent=country["Country"];
+
   const subtitle=document.createElement("p");
   subtitle.className="details-subtitle";
   subtitle.textContent=country["Official Name"];
+
   titleWrap.appendChild(title);
   titleWrap.appendChild(subtitle);
   header.appendChild(titleWrap);
+
   const grid=document.createElement("div");
   grid.className="details-grid";
+
   const fields=[
     {label:"GDP",value:country["GDP"]},
     {label:"Population",value:country["Population"]},
     {label:"Currency",value:country["Currency"]},
-    {label:"Official language(s)",value:country["Official Language(s)"]},
+    {label:"Official language(s)",value:country["Official Language(s)"],languages:true},
     {label:"GDP per capita",value:country["GDP Per Capita"]},
     {label:"Borders",value:country["Borders"],borders:true}
   ];
+
   fields.forEach(field=>{
     const card=document.createElement("div");
     card.className="detail-card";
+
     const label=document.createElement("div");
     label.className="detail-label";
     label.textContent=field.label;
+
     const value=document.createElement("div");
     value.className="detail-value";
+
     if(field.borders){
       value.classList.add("borders");
       const borders=(field.value||"").split(/\s+/).filter(Boolean);
+
       if(!borders.length){
         value.textContent="None";
       }else{
         borders.forEach(b=>{
           const span=document.createElement("span");
           span.textContent=b.replace(/_/g," ");
+
+          span.onclick=()=>{
+            const target=allCountries.find(c=>c["Country"].toLowerCase()===span.textContent.toLowerCase());
+            if(target){
+              const idx=allCountries.indexOf(target);
+              const card=document.querySelector(`.country-card[data-index="${idx}"]`);
+
+              document.querySelectorAll(".country-card.active").forEach(e=>e.classList.remove("active"));
+              if(card){
+                card.classList.add("active");
+                card.scrollIntoView({behavior:"smooth",block:"center"});
+              }
+
+              renderCountryDetails(target);
+            }
+          };
+
           value.appendChild(span);
         });
       }
-    }else{
+
+    } else if(field.languages){
+      value.classList.add("borders");
+      const langs=(field.value||"").split(/\s+/).filter(Boolean);
+
+      if(!langs.length){
+        value.textContent="None";
+      }else{
+        langs.forEach(l=>{
+          const span=document.createElement("span");
+          span.textContent=l.replace(/_/g," ");
+          value.appendChild(span);
+        });
+      }
+
+    } else {
       value.textContent=field.value||"—";
     }
+
     card.appendChild(label);
     card.appendChild(value);
     grid.appendChild(card);
   });
+
   container.appendChild(header);
   container.appendChild(grid);
-  const historyFiles=getAllFlagFiles(country["FlagFiles"]);
-  if(historyFiles.length){
-    const historyTitle=document.createElement("h3");
-    historyTitle.className="history-section-title";
-    historyTitle.textContent="Historical Flags";
-    const historyGrid=document.createElement("div");
-    historyGrid.className="history-grid";
-    historyFiles.forEach(fileBase=>{
+
+  const history=getAllFlagFiles(country["FlagFiles"]);
+  if(history.length){
+    const title=document.createElement("h3");
+    title.className="history-section-title";
+    title.textContent="Historical Flags";
+
+    const list=document.createElement("div");
+    list.className="history-grid";
+
+    history.forEach(file=>{
+      const meta=parseFlagMeta(file);
+
       const item=document.createElement("div");
       item.className="history-item";
+
       const img=document.createElement("img");
       img.className="history-flag";
-      img.src=buildFlagUrl(country["Country"],fileBase);
-      img.alt=country["Country"]+" historical flag";
-      const meta=parseFlagMeta(fileBase);
-      const textWrap=document.createElement("div");
-      textWrap.className="history-text";
-      const rangeEl=document.createElement("div");
-      rangeEl.className="history-range";
-      rangeEl.textContent=meta.range||"Unknown period";
-      const dynEl=document.createElement("div");
-      dynEl.className="history-dynasty";
-      dynEl.textContent=meta.dynasty||"";
-      textWrap.appendChild(rangeEl);
-      if(meta.dynasty)textWrap.appendChild(dynEl);
+      img.src=buildFlagUrl(country["Country"],file);
+
+      const text=document.createElement("div");
+      text.className="history-text";
+
+      const range=document.createElement("div");
+      range.className="history-range";
+      range.textContent=meta.range;
+
+      const dyn=document.createElement("div");
+      dyn.className="history-dynasty";
+      dyn.textContent=meta.dynasty;
+
+      text.appendChild(range);
+      if(meta.dynasty)text.appendChild(dyn);
+
       item.appendChild(img);
-      item.appendChild(textWrap);
-      historyGrid.appendChild(item);
+      item.appendChild(text);
+      list.appendChild(item);
     });
-    container.appendChild(historyTitle);
-    container.appendChild(historyGrid);
+
+    container.appendChild(title);
+    container.appendChild(list);
   }
 }
 
@@ -292,28 +345,22 @@ function renderCountryList(filter){
   const list=document.getElementById("country-list");
   list.innerHTML="";
   const q=(filter||"").toLowerCase();
-  allCountries.forEach((country,idx)=>{
-    if(!q||country["Country"].toLowerCase().includes(q)){
-      list.appendChild(createCountryCard(country,idx));
+
+  allCountries.forEach((c,i)=>{
+    if(!q||c["Country"].toLowerCase().includes(q)){
+      list.appendChild(createCountryCard(c,i));
     }
   });
-  const first=list.querySelector(".country-card");
-  if(first)first.click();
 }
 
 async function init(){
-  const details=document.getElementById("country-details");
-  try{
-    const csv=await fetchCSV(CSV_URL);
-    allCountries=parseCSV(csv);
-    renderCountryList("");
-  }catch(e){
-    details.innerHTML="<p class='placeholder'>Could not load country data.</p><p class='error'>"+e.message+"</p>";
-  }
-  const search=document.getElementById("search");
-  search.addEventListener("input",e=>{
+  const csv=await fetchCSV(CSV_URL);
+  allCountries=parseCSV(csv);
+  renderCountryList("");
+
+  document.getElementById("search").oninput=e=>{
     renderCountryList(e.target.value);
-  });
+  };
 }
 
 init();
