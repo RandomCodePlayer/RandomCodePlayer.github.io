@@ -4,10 +4,54 @@
 <meta charset="UTF-8">
 <title>National Data Archive</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
+<style>
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;display:flex;min-height:100vh;background:#0f172a;color:#e5e7eb;overflow:hidden;scrollbar-width:none}
+body::-webkit-scrollbar{display:none}
+header{position:fixed;top:0;left:0;right:0;padding:.75rem 1.5rem;background:rgba(15,23,42,.95);border-bottom:1px solid #1f2937;display:flex;align-items:center;z-index:10}
+header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af}
+.container{display:flex;width:100%;margin-top:3.25rem;height:calc(100vh - 3.25rem)}
+.sidebar{width:320px;max-width:100%;border-right:1px solid #1f2937;background:#020617;overflow-y:auto;overflow-x:hidden;padding:1rem;box-sizing:border-box;scrollbar-width:none}
+.sidebar::-webkit-scrollbar{display:none}
+.sidebar-search{margin-bottom:.75rem}
+.sidebar-search input{width:100%;padding:.4rem .6rem;border-radius:.35rem;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:.85rem;box-sizing:border-box}
+.sidebar-search input:focus{outline:none;border-color:#3b82f6}
+.content{flex:1;padding:1.5rem;overflow-y:auto;box-sizing:border-box;scrollbar-width:none}
+.content::-webkit-scrollbar{display:none}
+.country-card{display:flex;flex-direction:column;align-items:center;padding:.75rem;margin-bottom:.75rem;border-radius:.5rem;background:#020617;border:1px solid transparent;cursor:pointer;transition:border-color .15s,transform .1s}
+.country-card:hover{border-color:#3b82f6;transform:translateY(-1px)}
+.country-card.active{border-color:#60a5fa}
+.country-flag{width:100%;max-width:220px;height:auto;object-fit:contain;border-radius:.35rem;border:1px solid #1f2937;background:#020617}
+.country-name{margin-top:.5rem;font-weight:600;font-size:.95rem;text-align:center}
+.country-official{font-size:.75rem;color:#9ca3af;text-align:center}
+.placeholder{color:#6b7280;font-size:.95rem;margin-top:2rem}
+.details-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.details-flag{width:100%;max-width:260px;height:auto;object-fit:contain;border-radius:.5rem;border:1px solid #1f2937;background:#020617}
+.details-title{font-size:1.5rem;margin:0}
+.details-subtitle{margin:.25rem 0 0;color:#9ca3af;font-size:.9rem}
+.details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
+.detail-card{background:#020617;border-radius:.5rem;border:1px solid #1f2937;padding:.75rem .9rem}
+.detail-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;margin-bottom:.25rem}
+.detail-value{font-size:.95rem;white-space:pre-wrap}
+.borders span{display:inline-block;background:#020617;border-radius:999px;border:1px solid #1f2937;padding:.15rem .6rem;font-size:.8rem;margin:.1rem .2rem .1rem 0}
+.error{color:#f97373;font-size:.9rem;margin-top:1rem}
+.flag-wrapper{position:relative;display:inline-block;max-width:100%}
+.flag-tag{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.65);padding:3px 6px;font-size:.7rem;border-radius:4px;color:#fff;text-transform:uppercase;letter-spacing:.05em}
+.history-section-title{font-size:1rem;margin:0 0 .75rem}
+.history-grid{display:flex;flex-direction:column;gap:.75rem}
+.history-item{display:flex;align-items:center;gap:.75rem;background:#020617;border-radius:.5rem;border:1px solid #1f2937;padding:.5rem .75rem;flex-wrap:wrap}
+.history-flag{width:140px;max-width:100%;height:auto;object-fit:contain;border-radius:.35rem;border:1px solid #1f2937;background:#020617}
+.history-text{display:flex;flex-direction:column;font-size:.85rem}
+.history-range{color:#e5e7eb}
+.history-dynasty{color:#9ca3af;font-size:.8rem}
+@media(max-width:800px){
+.container{flex-direction:column;height:auto}
+.sidebar{width:100%;max-height:260px;border-right:none;border-bottom:1px solid #1f2937}
+.details-header{flex-direction:column;align-items:flex-start}
+.details-flag{max-width:100%}
+}
+</style>
 </head>
 <body>
-
 <header>
 <h1>National Data Archive</h1>
 </header>
@@ -19,75 +63,12 @@
 </div>
 <div id="country-list"></div>
 </aside>
-
 <main class="content" id="country-details">
 <p class="placeholder">Select a country from the list to view its full data.</p>
 </main>
 </div>
 
-<script src="script.js"></script>
-</body>
-</html>
-body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;display:flex;min-height:100vh;background:#0f172a;color:#e5e7eb;overflow:hidden;scrollbar-width:none}
-body::-webkit-scrollbar{display:none}
-
-header{position:fixed;top:0;left:0;right:0;padding:.75rem 1.5rem;background:rgba(15,23,42,.95);border-bottom:1px solid #1f2937;display:flex;align-items:center;z-index:10}
-header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af}
-
-.container{display:flex;width:100%;margin-top:3.25rem;height:calc(100vh - 3.25rem)}
-
-.sidebar{width:320px;max-width:100%;border-right:1px solid #1f2937;background:#020617;overflow-y:auto;padding:1rem;box-sizing:border-box;scrollbar-width:none;overflow-x:hidden}
-.sidebar::-webkit-scrollbar{display:none}
-
-.sidebar-search{margin-bottom:.75rem}
-.sidebar-search input{width:100%;padding:.4rem .6rem;border-radius:.35rem;border:1px solid #1f2937;background:#020617;color:#e5e7eb;font-size:.85rem;box-sizing:border-box}
-
-.content{flex:1;padding:1.5rem;overflow-y:auto;box-sizing:border-box;scrollbar-width:none}
-.content::-webkit-scrollbar{display:none}
-
-.country-card{display:flex;flex-direction:column;align-items:center;padding:.75rem;margin-bottom:.75rem;border-radius:.5rem;background:#020617;border:1px solid transparent;cursor:pointer;transition:border-color .15s,transform .1s}
-.country-card:hover{border-color:#3b82f6;transform:translateY(-1px)}
-.country-card.active{border-color:#60a5fa}
-
-.country-flag{width:100%;max-width:220px;height:auto;object-fit:contain;border-radius:.35rem;border:1px solid #1f2937;background:#020617}
-
-.country-name{margin-top:.5rem;font-weight:600;font-size:.95rem;text-align:center}
-.country-official{font-size:.75rem;color:#9ca3af;text-align:center}
-
-.placeholder{color:#6b7280;font-size:.95rem;margin-top:2rem}
-
-.details-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
-.details-flag{width:100%;max-width:260px;height:auto;object-fit:contain;border-radius:.5rem;border:1px solid #1f2937;background:#020617}
-
-.details-title{font-size:1.5rem;margin:0}
-.details-subtitle{margin:.25rem 0 0;color:#9ca3af;font-size:.9rem}
-
-.details-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
-.detail-card{background:#020617;border-radius:.5rem;border:1px solid #1f2937;padding:.75rem .9rem}
-.detail-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;margin-bottom:.25rem}
-.detail-value{font-size:.95rem;white-space:pre-wrap}
-
-.borders span{display:inline-block;background:#020617;border-radius:999px;border:1px solid #1f2937;padding:.15rem .6rem;font-size:.8rem;margin:.1rem .2rem .1rem 0}
-
-.flag-wrapper{position:relative;display:inline-block;max-width:100%}
-.flag-tag{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.65);padding:3px 6px;font-size:.7rem;border-radius:4px;text-transform:uppercase}
-
-.history-section-title{font-size:1rem;margin:0 0 .75rem}
-.history-grid{display:flex;flex-direction:column;gap:.75rem}
-
-.history-item{display:flex;align-items:center;gap:.75rem;background:#020617;border-radius:.5rem;border:1px solid #1f2937;padding:.5rem .75rem;flex-wrap:wrap}
-.history-flag{width:140px;max-width:100%;height:auto;object-fit:contain;border-radius:.35rem;border:1px solid #1f2937;background:#020617}
-
-.history-text{display:flex;flex-direction:column;font-size:.85rem}
-.history-range{color:#e5e7eb}
-.history-dynasty{color:#9ca3af;font-size:.8rem}
-
-@media(max-width:800px){
-.container{flex-direction:column;height:auto}
-.sidebar{width:100%;max-height:260px;border-right:none;border-bottom:1px solid #1f2937}
-.details-header{flex-direction:column;align-items:flex-start}
-.details-flag{max-width:100%}
-}
+<script>
 const CSV_URL="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Data/CountryData.csv";
 const FLAG_BASE_ROOT="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Flags/CountryFlags/";
 const FLAG_EXTENSION=".webp";
@@ -124,7 +105,8 @@ function parseCSV(text){
 function getLatestFlagFile(field){
   if(!field)return null;
   const parts=field.split(/\s+/).filter(Boolean);
-  return parts[parts.length-1]||null;
+  if(!parts.length)return null;
+  return parts[parts.length-1];
 }
 
 function getAllFlagFiles(field){
@@ -136,18 +118,20 @@ function countryFolderName(name){
   return name.replace(/\s+/g,"-");
 }
 
-function buildFlagUrl(country,file){
-  return FLAG_BASE_ROOT+countryFolderName(country)+"/Historical/"+file+FLAG_EXTENSION;
+function buildFlagUrl(country,fileBase){
+  return FLAG_BASE_ROOT+countryFolderName(country)+"/Historical/"+fileBase+FLAG_EXTENSION;
 }
 
-function parseFlagMeta(file){
-  const base=file.replace(/\.[^.]+$/,"");
+function parseFlagMeta(fileBase){
+  const base=fileBase.replace(/\.[^.]+$/,"");
   const parts=base.split("_");
-
   if(parts.length===1){
-    return{country:parts[0].replace(/-/g," "),range:"",dynasty:""};
+    return{
+      country:parts[0].replace(/-/g," "),
+      range:"",
+      dynasty:""
+    };
   }
-
   if(parts.length===2){
     return{
       country:parts[0].replace(/-/g," "),
@@ -155,92 +139,82 @@ function parseFlagMeta(file){
       dynasty:""
     };
   }
-
   const dynasty=parts[parts.length-1].replace(/-/g," ");
   const range=parts[parts.length-2];
   const country=parts.slice(0,parts.length-2).join(" ").replace(/-/g," ");
-
   return{country,range,dynasty};
 }
 
-function isOccupied(file){
-  const base=file.replace(/\.[^.]+$/,"");
-  return base.split("_").length>=3;
+function isOccupiedFlag(fileBase){
+  const base=fileBase.replace(/\.[^.]+$/,"");
+  const parts=base.split("_");
+  return parts.length>=3;
 }
 
 function createCountryCard(country,index){
   const card=document.createElement("div");
   card.className="country-card";
-
-  const latest=getLatestFlagFile(country["FlagFiles"]);
+  card.dataset.index=index;
+  const latestFlag=getLatestFlagFile(country["FlagFiles"]);
   const img=document.createElement("img");
   img.className="country-flag";
-  img.src=buildFlagUrl(country["Country"],latest);
-
+  if(latestFlag){
+    img.src=buildFlagUrl(country["Country"],latestFlag);
+    img.alt=country["Country"]+" flag";
+  }else{
+    img.alt="No flag available";
+  }
   const name=document.createElement("div");
   name.className="country-name";
   name.textContent=country["Country"];
-
   const official=document.createElement("div");
   official.className="country-official";
   official.textContent=country["Official Name"];
-
   card.appendChild(img);
   card.appendChild(name);
   card.appendChild(official);
-
-  card.onclick=()=>{
-    document.querySelectorAll(".country-card.active").forEach(e=>e.classList.remove("active"));
+  card.addEventListener("click",()=>{
+    document.querySelectorAll(".country-card.active").forEach(el=>el.classList.remove("active"));
     card.classList.add("active");
     renderCountryDetails(country);
-  };
-
+  });
   return card;
 }
 
 function renderCountryDetails(country){
   const container=document.getElementById("country-details");
   container.innerHTML="";
-
-  const latest=getLatestFlagFile(country["FlagFiles"]);
+  const latestFlag=getLatestFlagFile(country["FlagFiles"]);
   const header=document.createElement("div");
   header.className="details-header";
-
-  if(latest){
+  if(latestFlag){
     const wrap=document.createElement("div");
     wrap.className="flag-wrapper";
-
     const img=document.createElement("img");
     img.className="details-flag";
-    img.src=buildFlagUrl(country["Country"],latest);
+    img.src=buildFlagUrl(country["Country"],latestFlag);
+    img.alt=country["Country"]+" flag";
     wrap.appendChild(img);
-
-    if(isOccupied(latest)){
+    if(isOccupiedFlag(latestFlag)){
       const tag=document.createElement("div");
       tag.className="flag-tag";
       tag.textContent="Occupied";
       wrap.appendChild(tag);
     }
-
     header.appendChild(wrap);
   }
-
   const titleWrap=document.createElement("div");
   const title=document.createElement("h2");
   title.className="details-title";
   title.textContent=country["Country"];
-
   const subtitle=document.createElement("p");
   subtitle.className="details-subtitle";
   subtitle.textContent=country["Official Name"];
-
   titleWrap.appendChild(title);
   titleWrap.appendChild(subtitle);
   header.appendChild(titleWrap);
-
   const grid=document.createElement("div");
   grid.className="details-grid";
-
   const fields=[
     {label:"GDP",value:country["GDP"]},
     {label:"Population",value:country["Population"]},
@@ -249,78 +223,66 @@ function renderCountryDetails(country){
     {label:"GDP per capita",value:country["GDP Per Capita"]},
     {label:"Borders",value:country["Borders"],borders:true}
   ];
-
-  fields.forEach(f=>{
+  fields.forEach(field=>{
     const card=document.createElement("div");
     card.className="detail-card";
-
     const label=document.createElement("div");
     label.className="detail-label";
-    label.textContent=f.label;
-
+    label.textContent=field.label;
     const value=document.createElement("div");
     value.className="detail-value";
-
-    if(f.borders){
-      const borders=(f.value||"").split(/\s+/).filter(Boolean);
-      if(!borders.length)value.textContent="None";
-      else borders.forEach(b=>{
-        const span=document.createElement("span");
-        span.textContent=b.replace(/_/g," ");
-        value.appendChild(span);
-      });
+    if(field.borders){
+      value.classList.add("borders");
+      const borders=(field.value||"").split(/\s+/).filter(Boolean);
+      if(!borders.length){
+        value.textContent="None";
+      }else{
+        borders.forEach(b=>{
+          const span=document.createElement("span");
+          span.textContent=b.replace(/_/g," ");
+          value.appendChild(span);
+        });
+      }
     }else{
-      value.textContent=f.value||"—";
+      value.textContent=field.value||"—";
     }
-
     card.appendChild(label);
     card.appendChild(value);
     grid.appendChild(card);
   });
-
   container.appendChild(header);
   container.appendChild(grid);
-
-  const history=getAllFlagFiles(country["FlagFiles"]);
-  if(history.length){
-    const title=document.createElement("h3");
-    title.className="history-section-title";
-    title.textContent="Historical Flags";
-
-    const list=document.createElement("div");
-    list.className="history-grid";
-
-    history.forEach(file=>{
-      const meta=parseFlagMeta(file);
-
+  const historyFiles=getAllFlagFiles(country["FlagFiles"]);
+  if(historyFiles.length){
+    const historyTitle=document.createElement("h3");
+    historyTitle.className="history-section-title";
+    historyTitle.textContent="Historical Flags";
+    const historyGrid=document.createElement("div");
+    historyGrid.className="history-grid";
+    historyFiles.forEach(fileBase=>{
       const item=document.createElement("div");
       item.className="history-item";
-
       const img=document.createElement("img");
       img.className="history-flag";
-      img.src=buildFlagUrl(country["Country"],file);
-
-      const text=document.createElement("div");
-      text.className="history-text";
-
-      const range=document.createElement("div");
-      range.className="history-range";
-      range.textContent=meta.range;
-
-      const dyn=document.createElement("div");
-      dyn.className="history-dynasty";
-      dyn.textContent=meta.dynasty;
-
-      text.appendChild(range);
-      if(meta.dynasty)text.appendChild(dyn);
-
+      img.src=buildFlagUrl(country["Country"],fileBase);
+      img.alt=country["Country"]+" historical flag";
+      const meta=parseFlagMeta(fileBase);
+      const textWrap=document.createElement("div");
+      textWrap.className="history-text";
+      const rangeEl=document.createElement("div");
+      rangeEl.className="history-range";
+      rangeEl.textContent=meta.range||"Unknown period";
+      const dynEl=document.createElement("div");
+      dynEl.className="history-dynasty";
+      dynEl.textContent=meta.dynasty||"";
+      textWrap.appendChild(rangeEl);
+      if(meta.dynasty)textWrap.appendChild(dynEl);
       item.appendChild(img);
-      item.appendChild(text);
-      list.appendChild(item);
+      item.appendChild(textWrap);
+      historyGrid.appendChild(item);
     });
-
-    container.appendChild(title);
-    container.appendChild(list);
+    container.appendChild(historyTitle);
+    container.appendChild(historyGrid);
   }
 }
 
@@ -330,25 +292,31 @@ function renderCountryList(filter){
   const list=document.getElementById("country-list");
   list.innerHTML="";
   const q=(filter||"").toLowerCase();
-
-  allCountries.forEach((c,i)=>{
-    if(!q||c["Country"].toLowerCase().includes(q)){
-      list.appendChild(createCountryCard(c,i));
+  allCountries.forEach((country,idx)=>{
+    if(!q||country["Country"].toLowerCase().includes(q)){
+      list.appendChild(createCountryCard(country,idx));
     }
   });
-
   const first=list.querySelector(".country-card");
   if(first)first.click();
 }
 
 async function init(){
-  const csv=await fetchCSV(CSV_URL);
-  allCountries=parseCSV(csv);
-  renderCountryList("");
-
-  document.getElementById("search").oninput=e=>{
+  const details=document.getElementById("country-details");
+  try{
+    const csv=await fetchCSV(CSV_URL);
+    allCountries=parseCSV(csv);
+    renderCountryList("");
+  }catch(e){
+    details.innerHTML="<p class='placeholder'>Could not load country data.</p><p class='error'>"+e.message+"</p>";
+  }
+  const search=document.getElementById("search");
+  search.addEventListener("input",e=>{
     renderCountryList(e.target.value);
-  };
+  });
 }
 
 init();
+</script>
+</body>
+</html>
