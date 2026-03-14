@@ -30,23 +30,26 @@ header h1{
   color:#9ca3af;
 }
 
+/* MUCH bigger subheadings */
 .section-header{
   text-align:center;
-  font-size:1.2rem;
-  margin:2rem 0 1rem;
-  color:#9ca3af;
+  font-size:2rem;
+  margin:2.5rem 0 1.5rem;
+  color:#e5e7eb;
   letter-spacing:.05em;
   text-transform:uppercase;
+  font-weight:700;
 }
 
+/* Each demographic stacked vertically */
 .section{
   padding:1rem 1.5rem;
 }
 
 .cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:1rem;
+  display:flex;
+  flex-direction:column;
+  gap:1.5rem;
 }
 
 .card{
@@ -59,15 +62,15 @@ header h1{
 }
 
 .card-value{
-  font-size:1.6rem;
-  font-weight:600;
+  font-size:2rem;
+  font-weight:700;
   color:#f9fafb;
   text-align:center;
 }
 
 .card-name{
-  font-size:.9rem;
-  color:#e5e7eb;
+  font-size:1.1rem;
+  color:#cbd5e1;
   text-align:center;
 }
 </style>
@@ -134,8 +137,7 @@ async function init(){
   const rows = await loadCSV(CSV_URL);
   const container = document.getElementById("stats");
 
-  let lastCategory = null;
-  let sections = [];
+  let sections = {};
 
   rows.forEach(r=>{
     const category = r[0];
