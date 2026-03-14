@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>National Data Archive — Global Stats</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;background:#0f172a;color:#e5e7eb;overflow-x:hidden}
+header{padding:1rem 1.5rem;background:#020617;border-bottom:1px solid #1f2937;position:sticky;top:0;z-index:10}
+header h1{margin:0;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af}
+.container{padding:1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.card{background:#020617;border:1px solid #1f2937;border-radius:.5rem;padding:1rem;display:flex;flex-direction:column;gap:.5rem}
+.card-category{font-size:.75rem;text-transform:uppercase;color:#9ca3af;letter-spacing:.08em}
+.card-value{font-size:1.6rem;font-weight:600;color:#f9fafb}
+.card-name{font-size:.9rem;color:#e5e7eb}
+</style>
+</head>
+<body>
+
+<header>
+<h1>National Data Archive — Global Statistics</h1>
+</header>
+
+<div class="container" id="stats"></div>
+
+<script>
+const CSV_URL = "https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Data/DemographicData.csv";
+
+/* Number Shortener */
+function shortenNumber(num){
+  num = Number(num);
+  if(isNaN(num)) return num;
+  const abs = Math.abs(num);
+
+  if(abs >= 1_000_000_000){
+    const v = (num/1_000_000_000).toFixed(1);
+    return (v.endsWith(".0")?v.slice(0,-2):v)+" Billion";
+  }
+  if(abs >= 1_000_000){
+    const v = (num/1_000_000).toFixed(1);
+    return (v.endsWith(".0")?v.slice(0,-2):v)+" Million";
+  }
+  if(abs >= 1_000){
+    const v = (num/1_000).toFixed(1);
+    return (v.endsWith(".0")?v.slice(0,-2):v)+" Thousand";
+  }
+  return num.toString();
+}
+
+/* CSV Loader */
+async function loadCSV(url){
+  const res = await fetch(url);
+  const text = await res.text();
+  return text.trim().split(/\r?\n/).map(r=>r.split(","));
+}
+
+/* Compute current value */
+function computeValue(per, type){
+  const now = new Date();
+
+  if(type === "year"){
+    const yearStart = new Date("2025-01-01T00:00:00Z");
+    const elapsedSeconds = (now - yearStart) / 1000;
+    const perSecond = per / (365 * 24 * 60 * 60);
+    return perSecond * elapsedSeconds;
+  }
+
+  if(type === "day"){
+    const midnight = new Date(now);
+    midnight.setHours(0,0,0,0);
+    const elapsedSeconds = (now - midnight) / 1000;
+    const perSecond = per / (24 * 60 * 60);
+    return perSecond * elapsedSeconds;
+  }
+
+  return per;
+}
+
+/* Render */
+async function init(){
+  const rows = await loadCSV(CSV_URL);
+  const container = document.getElementById("stats");
+
+  rows.forEach(r=>{
+    const category = r[0];
+    const per = Number(r[1]);
+    const type = r[2].trim().toLowerCase();
+    const name = r[3];
+    const prefix = r[4] || "";
+    const suffix = r[5] || "";
+
+    const current = computeValue(per, type);
+    const display = prefix + " " + shortenNumber(current) + " " + suffix;
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <div class="card-category">${category}</div>
+      <div class="card-value">${display}</div>
+      <div class="card-name">${name}</div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+init();
+</script>
+
+</body>
+</html>
