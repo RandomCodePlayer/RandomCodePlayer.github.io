@@ -39,8 +39,11 @@ header h1{
   text-transform:uppercase;
 }
 
-#stats{
-  padding:1.5rem;
+.section{
+  padding:1rem 1.5rem;
+}
+
+.cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:1rem;
@@ -80,31 +83,15 @@ header h1{
 <script>
 const CSV_URL = "https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Data/DemographicData.csv";
 
-/* Number Shortener */
-function shortenNumber(num){
-  num = Number(num);
-  if(isNaN(num)) return num;
-  const abs = Math.abs(num);
-
-  if(abs >= 1_000_000_000){
-    const v = (num/1_000_000_000).toFixed(1);
-    return (v.endsWith(".0")?v.slice(0,-2):v)+" Billion";
-  }
-  if(abs >= 1_000_000){
-    const v = (num/1_000_000).toFixed(1);
-    return (v.endsWith(".0")?v.slice(0,-2):v)+" Million";
-  }
-  if(abs >= 1_000){
-    const v = (num/1_000).toFixed(1);
-    return (v.endsWith(".0")?v.slice(0,-2):v)+" Thousand";
-  }
-  return num.toString();
+/* Format full number with commas */
+function formatFullNumber(num){
+  return Math.floor(num).toLocaleString("en-US");
 }
 
 /* Parse human-friendly numbers */
 function parseHumanNumber(str){
   str = str.trim().toLowerCase();
-  str = str.replace(/,/g, ""); // FIX: remove commas
+  str = str.replace(/,/g, "");
 
   if(/^\d+(\.\d+)?b$/.test(str)) return parseFloat(str)*1_000_000_000;
   if(/^\d+(\.\d+)?m$/.test(str)) return parseFloat(str)*1_000_000;
@@ -148,6 +135,7 @@ async function init(){
   const container = document.getElementById("stats");
 
   let lastCategory = null;
+  let sections = [];
 
   rows.forEach(r=>{
     const category = r[0];
@@ -157,26 +145,44 @@ async function init(){
     const prefix = r[4] || "";
     const suffix = r[5] || "";
 
-    if(category !== lastCategory){
+    if(!sections[category]){
+      const section = document.createElement("div");
+      section.className = "section";
+
       const header = document.createElement("h2");
       header.className = "section-header";
       header.textContent = category;
-      container.appendChild(header);
-      lastCategory = category;
-    }
 
-    const current = computeValue(per, type);
-    const display = prefix + " " + shortenNumber(current) + " " + suffix;
+      const cards = document.createElement("div");
+      cards.className = "cards";
+
+      section.appendChild(header);
+      section.appendChild(cards);
+      container.appendChild(section);
+
+      sections[category] = cards;
+    }
 
     const card = document.createElement("div");
     card.className = "card";
 
-    card.innerHTML = `
-      <div class="card-value">${display}</div>
-      <div class="card-name">${name}</div>
-    `;
+    const value = document.createElement("div");
+    value.className = "card-value";
 
-    container.appendChild(card);
+    const label = document.createElement("div");
+    label.className = "card-name";
+    label.textContent = name;
+
+    card.appendChild(value);
+    card.appendChild(label);
+
+    sections[category].appendChild(card);
+
+    // Live updating
+    setInterval(()=>{
+      const current = computeValue(per, type);
+      value.textContent = prefix + " " + formatFullNumber(current) + " " + suffix;
+    }, 100);
   });
 }
 
