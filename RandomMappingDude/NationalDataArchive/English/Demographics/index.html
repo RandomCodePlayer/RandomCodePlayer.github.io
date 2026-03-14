@@ -30,18 +30,17 @@ header h1{
   color:#9ca3af;
 }
 
-/* MUCH bigger subheadings */
+/* Updated: same grey as earlier */
 .section-header{
   text-align:center;
   font-size:2rem;
   margin:2.5rem 0 1.5rem;
-  color:#e5e7eb;
+  color:#9ca3af;
   letter-spacing:.05em;
   text-transform:uppercase;
   font-weight:700;
 }
 
-/* Each demographic stacked vertically */
 .section{
   padding:1rem 1.5rem;
 }
@@ -78,7 +77,7 @@ header h1{
 <body>
 
 <header>
-<h1>National Data Archive — Global Statistics</h1>
+<h1>National Data Archive</h1>
 </header>
 
 <div id="stats"></div>
@@ -100,6 +99,9 @@ function parseHumanNumber(str){
   if(/^\d+(\.\d+)?m$/.test(str)) return parseFloat(str)*1_000_000;
   if(/^\d+(\.\d+)?k$/.test(str)) return parseFloat(str)*1_000;
 
+  // If it's a date, return Date object
+  if(/^\d{4}-\d{2}-\d{2}$/.test(str)) return new Date(str);
+
   return Number(str);
 }
 
@@ -113,7 +115,22 @@ async function loadCSV(url){
 /* Compute current value */
 function computeValue(per, type){
   const now = new Date();
+  const base = new Date("2025-01-01T00:00:00Z");
 
+  // DATE-BASED TYPES
+  if(per instanceof Date){
+    const diffDays = (per - base) / (1000*60*60*24);
+
+    if(type === "daydown") return diffDays;
+    if(type === "daysince") return -diffDays;
+
+    if(type === "yeardown") return diffDays / 365;
+    if(type === "yearsince") return -diffDays / 365;
+
+    return 0;
+  }
+
+  // RATE-BASED TYPES
   if(type === "year"){
     const yearStart = new Date("2026-01-01T00:00:00Z");
     const elapsedSeconds = (now - yearStart) / 1000;
