@@ -117,115 +117,26 @@ function countryFolderName(name){
   return name.replace(/\s+/g,"-");
 }
 
-function buildFlagUrl(country,file){
-  return FLAG_BASE_ROOT+countryFolderName(country)+"/Historical/"+file+FLAG_EXTENSION;
+function buildFlagUrl(country){
+  return FLAG_BASE_ROOT + country + "/Historical/" + country + FLAG_EXTENSION;
 }
 
-function parseFlagMeta(file){
-  const base=file.replace(/\.[^.]+$/,"");
-  const parts=base.split("_");
-
-  if(parts.length===1){
-    return{country:parts[0].replace(/-/g," "),range:"",dynasty:""};
-  }
-
-  if(parts.length===2){
-    return{country:parts[0].replace(/-/g," "),range:parts[1],dynasty:""};
-  }
-
-  const dynasty=parts[parts.length-1].replace(/-/g," ");
-  const range=parts[parts.length-2];
-  const country=parts.slice(0,parts.length-2).join(" ").replace(/-/g," ");
-
-  return{country,range,dynasty};
-}
-
-function isOccupied(file){
-  return file.split("_").length>=3;
-}
-
-function createCountryCard(country,index){
-  const card=document.createElement("div");
-  card.className="country-card";
-  card.dataset.index=index;
-
-  const latest=getLatestFlagFile(country["FlagFiles"]);
-  const img=document.createElement("img");
-  img.className="country-flag";
-  img.src=buildFlagUrl(country["Country"],latest);
-
-  const name=document.createElement("div");
-  name.className="country-name";
-  name.textContent=country["Country"];
-
-  const official=document.createElement("div");
-  official.className="country-official";
-  official.textContent=country["Official Name"];
-
-  card.appendChild(img);
-  card.appendChild(name);
-  card.appendChild(official);
-
-  card.onclick=()=>{
-    document.querySelectorAll(".country-card.active").forEach(e=>e.classList.remove("active"));
-    card.classList.add("active");
-    renderCountryDetails(country);
-    card.scrollIntoView({behavior:"smooth",block:"center"});
-  };
-
-  return card;
-}
-
-function shortenNumber(num) {
-  num = Number(num);
-  if (isNaN(num)) return num;
-
-  const abs = Math.abs(num);
-
-  if (abs >= 1_000_000_000) {
-    const val = (num / 1_000_000_000).toFixed(1);
-    return (val.endsWith(".0") ? val.slice(0, -2) : val) + " Billion";
-  }
-
-  if (abs >= 1_000_000) {
-    const val = (num / 1_000_000).toFixed(1);
-    return (val.endsWith(".0") ? val.slice(0, -2) : val) + " Million";
-  }
-
-  if (abs >= 1_000) {
-    const val = (num / 1_000).toFixed(1);
-    return (val.endsWith(".0") ? val.slice(0, -2) : val) + " Thousand";
-  }
-
-  return num.toString();
-}
-  
 function renderCountryDetails(country){
   const container=document.getElementById("country-details");
   container.innerHTML="";
 
-  const latest=getLatestFlagFile(country["FlagFiles"]);
   const header=document.createElement("div");
   header.className="details-header";
 
-  if(latest){
-    const wrap=document.createElement("div");
-    wrap.className="flag-wrapper";
+  const wrap=document.createElement("div");
+  wrap.className="flag-wrapper";
 
-    const img=document.createElement("img");
-    img.className="details-flag";
-    img.src=buildFlagUrl(country["Country"],latest);
-    wrap.appendChild(img);
+  const img=document.createElement("img");
+  img.className="details-flag";
+  img.src=buildFlagUrl(country["Country"]);
+  wrap.appendChild(img);
 
-    if(isOccupied(latest)){
-      const tag=document.createElement("div");
-      tag.className="flag-tag";
-      tag.textContent="Occupied";
-      wrap.appendChild(tag);
-    }
-
-    header.appendChild(wrap);
-  }
+  header.appendChild(wrap);
 
   const titleWrap=document.createElement("div");
   const title=document.createElement("h2");
@@ -243,13 +154,13 @@ function renderCountryDetails(country){
   const grid=document.createElement("div");
   grid.className="details-grid";
 
-  const fields = [
-    { label: "GDP", value: country["GDP"], money: true },
-    { label: "Population", value: country["Population"], numeric: true },
-    { label: "Currency", value: country["Currency"] },
-    { label: "Official language(s)", value: country["Official Language(s)"], languages: true },
-    { label: "GDP per capita", value: country["GDP Per Capita"], money: true },
-    { label: "Borders", value: country["Borders"], borders: true }
+  const fields=[
+    {label:"GDP",value:country["GDP"],money:true},
+    {label:"Population",value:country["Population"],numeric:true},
+    {label:"Currency",value:country["Currency"]},
+    {label:"Official language(s)",value:country["Official Language(s)"],languages:true},
+    {label:"GDP per capita",value:country["GDP Per Capita"],money:true},
+    {label:"Borders",value:country["Borders"],borders:true}
   ];
 
   fields.forEach(field=>{
@@ -266,30 +177,25 @@ function renderCountryDetails(country){
     if(field.borders){
       value.classList.add("borders");
       const borders=(field.value||"").split(/\s+/).filter(Boolean);
-
       if(!borders.length){
         value.textContent="None";
       }else{
         borders.forEach(b=>{
           const span=document.createElement("span");
           span.textContent=b.replace(/_/g," ");
-
           span.onclick=()=>{
             const target=allCountries.find(c=>c["Country"].toLowerCase()===span.textContent.toLowerCase());
             if(target){
               const idx=allCountries.indexOf(target);
               const card=document.querySelector(`.country-card[data-index="${idx}"]`);
-
               document.querySelectorAll(".country-card.active").forEach(e=>e.classList.remove("active"));
               if(card){
                 card.classList.add("active");
                 card.scrollIntoView({behavior:"smooth",block:"center"});
               }
-
               renderCountryDetails(target);
             }
           };
-
           value.appendChild(span);
         });
       }
@@ -297,7 +203,6 @@ function renderCountryDetails(country){
     } else if(field.languages){
       value.classList.add("borders");
       const langs=(field.value||"").split(/\s+/).filter(Boolean);
-
       if(!langs.length){
         value.textContent="None";
       }else{
@@ -308,15 +213,15 @@ function renderCountryDetails(country){
         });
       }
 
-    } else if (field.money) {
-      const shortened = shortenNumber(field.value);
-      value.textContent = "$ " + shortened;
-    
-    } else if (field.numeric) {
-      value.textContent = shortenNumber(field.value);
-    
+    } else if(field.money){
+      const shortened=shortenNumber(field.value);
+      value.textContent="$ "+shortened;
+
+    } else if(field.numeric){
+      value.textContent=shortenNumber(field.value);
+
     } else {
-      value.textContent = field.value || "—";
+      value.textContent=field.value||"—";
     }
 
     card.appendChild(label);
@@ -326,7 +231,7 @@ function renderCountryDetails(country){
 
   container.appendChild(header);
   container.appendChild(grid);
-
+}
   const history=getAllFlagFiles(country["FlagFiles"]);
   if(history.length){
     const title=document.createElement("h3");
