@@ -72,6 +72,8 @@ const CSV_URL="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData
 const API_ROOT="https://api.github.com/repos/RandomCodePlayer/FlagFinderData/contents/Flags/CountryFlags/";
 const RAW_ROOT="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Flags/CountryFlags/";
 
+function dashName(c){return c.replace(/ /g,"-");}
+
 async function fetchCSV(url){
   const res=await fetch(url);
   return await res.text();
@@ -101,8 +103,8 @@ function parseCSV(text){
 }
 
 async function fetchFlagFiles(country){
-  const folder=country.replace(/ /g,"-");
-  const url=API_ROOT+country+"/Historical";
+  const folder=dashName(country);
+  const url=API_ROOT+folder+"/Historical";
   const res=await fetch(url);
   if(!res.ok)return[];
   const data=await res.json();
@@ -114,18 +116,16 @@ function parseFlagName(name){
   const parts=base.split("_");
   const range=parts[1];
   const owner=parts[2]||"";
-  const years=range.replace("-", "–");
-  const ownerClean=owner.replace(/-/g," ");
-  return{years,owner:ownerClean};
+  return{
+    years:range.replace("-", "–"),
+    owner:owner.replace(/-/g," ")
+  };
 }
 
 function getCurrentFlag(files){
   let best=null;
   files.forEach(f=>{
-    const base=f.name.replace(".webp","");
-    const parts=base.split("_");
-    const range=parts[1];
-    const end=range.split("-")[1];
+    const end=f.name.split("_")[1].split("-")[1];
     if(end==="Present")best=f;
     else{
       const n=Number(end);
