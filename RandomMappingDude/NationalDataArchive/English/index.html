@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>National Data ArchiveDEBUG</title>
+<title>National Data Archive</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;display:flex;min-height:100vh;background:#0f172a;color:#e5e7eb;overflow:hidden;scrollbar-width:none}
@@ -79,6 +79,16 @@ async function fetchFlagFiles(country){
   return data.filter(f=>f.name.startsWith(folder+"_")&&f.name.endsWith(".webp"));
 }
 
+function getCurrentFlag(files){
+  return files.sort((a,b)=>{
+    const aEnd=a.name.split("_")[1].split("-")[1];
+    const bEnd=b.name.split("_")[1].split("-")[1];
+    if(aEnd==="Present")return 1;
+    if(bEnd==="Present")return -1;
+    return Number(bEnd)-Number(aEnd);
+  })[0];
+}
+
 function parseFlagName(name){
   const base=name.replace(".webp","");
   const parts=base.split("_");
@@ -86,19 +96,6 @@ function parseFlagName(name){
     years:parts[1].replace("-", "–"),
     owner:(parts[2]||"").replace(/-/g," ")
   };
-}
-
-function getCurrentFlag(files){
-  let best=null;
-  files.forEach(f=>{
-    const end=f.name.split("_")[1].split("-")[1];
-    if(end==="Present")best=f;
-    else{
-      const n=Number(end);
-      if(!best||n>Number(best.name.split("_")[1].split("-")[1]))best=f;
-    }
-  });
-  return best;
 }
 
 async function fetchCSV(url){
