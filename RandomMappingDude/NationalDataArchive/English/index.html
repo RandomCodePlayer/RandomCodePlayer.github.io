@@ -103,14 +103,13 @@ function parseCSV(text){
 }
 
 async function fetchFlagFiles(country){
-  const folder=dashName(country);
-  const url=API_ROOT+folder+"/Historical";
-  const res=await fetch(url);
-  if(!res.ok)return[];
-  const data=await res.json();
-  return data.filter(f=>f.name.startsWith(folder+"_")&&f.name.endsWith(".webp"));
+  const folder = dashName(country);
+  const url = `https://api.github.com/repos/RandomCodePlayer/FlagFinderData/contents/Flags/CountryFlags/${folder}/Historical/`;
+  const res = await fetch(url);
+  if (!res.ok) return [];
+  const data = await res.json();
+  return data.filter(f => f.name.startsWith(folder + "_") && f.name.endsWith(".webp"));
 }
-
 function parseFlagName(name){
   const base=name.replace(".webp","");
   const parts=base.split("_");
