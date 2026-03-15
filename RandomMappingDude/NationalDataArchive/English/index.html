@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>National Data Archive majortest</title>
+<title>National Data Archive</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;display:flex;min-height:100vh;background:#0f172a;color:#e5e7eb;overflow:hidden;scrollbar-width:none}
 body::-webkit-scrollbar{display:none}
 header{position:fixed;top:0;left:0;right:0;padding:.75rem 1.5rem;background:rgba(15,23,42,.95);border-bottom:1px solid #1f2937;display:flex;align-items:center;z-index:10}
 header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;color:#9ca3af}
+#debug-url{position:fixed;bottom:0;left:0;right:0;background:#111827;color:#f87171;padding:6px 10px;font-size:12px;font-family:monospace;z-index:9999}
 .container{display:flex;width:100%;margin-top:3.25rem;height:calc(100vh - 3.25rem)}
 .sidebar{width:320px;max-width:100%;border-right:1px solid #1f2937;background:#020617;overflow-y:auto;overflow-x:hidden;padding:1rem;box-sizing:border-box;scrollbar-width:none}
 .sidebar::-webkit-scrollbar{display:none}
@@ -50,9 +51,9 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 </style>
 </head>
 <body>
-<header>
-<h1>National Data Archive</h1>
-</header>
+<header><h1>National Data Archive</h1></header>
+
+<div id="debug-url"></div>
 
 <div class="container">
 <aside class="sidebar">
@@ -69,10 +70,40 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 
 <script>
 const CSV_URL="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Data/CountryData.csv";
-const API_ROOT="https://api.github.com/repos/RandomCodePlayer/FlagFinderData/contents/Flags/CountryFlags/";
-const RAW_ROOT="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Flags/CountryFlags/";
 
 function dashName(c){return c.replace(/ /g,"-");}
+
+async function fetchFlagFiles(country){
+  const folder=dashName(country);
+  const url=`https://api.github.com/repos/RandomCodePlayer/FlagFinderData/contents/Flags/CountryFlags/${folder}/Historical`;
+  document.getElementById("debug-url").textContent=url;
+  const res=await fetch(url);
+  if(!res.ok)return[];
+  const data=await res.json();
+  return data.filter(f=>f.name.startsWith(folder+"_")&&f.name.endsWith(".webp"));
+}
+
+function parseFlagName(name){
+  const base=name.replace(".webp","");
+  const parts=base.split("_");
+  return{
+    years:parts[1].replace("-", "–"),
+    owner:(parts[2]||"").replace(/-/g," ")
+  };
+}
+
+function getCurrentFlag(files){
+  let best=null;
+  files.forEach(f=>{
+    const end=f.name.split("_")[1].split("-")[1];
+    if(end==="Present")best=f;
+    else{
+      const n=Number(end);
+      if(!best||n>Number(best.name.split("_")[1].split("-")[1]))best=f;
+    }
+  });
+  return best;
+}
 
 async function fetchCSV(url){
   const res=await fetch(url);
@@ -102,38 +133,6 @@ function parseCSV(text){
   return rows;
 }
 
-async function fetchFlagFiles(country){
-  const folder = dashName(country);
-  const url = `https://api.github.com/repos/RandomCodePlayer/FlagFinderData/contents/Flags/CountryFlags/${folder}/Historical/`;
-  const res = await fetch(url);
-  if (!res.ok) return [];
-  const data = await res.json();
-  return data.filter(f => f.name.startsWith(folder + "_") && f.name.endsWith(".webp"));
-}
-function parseFlagName(name){
-  const base=name.replace(".webp","");
-  const parts=base.split("_");
-  const range=parts[1];
-  const owner=parts[2]||"";
-  return{
-    years:range.replace("-", "–"),
-    owner:owner.replace(/-/g," ")
-  };
-}
-
-function getCurrentFlag(files){
-  let best=null;
-  files.forEach(f=>{
-    const end=f.name.split("_")[1].split("-")[1];
-    if(end==="Present")best=f;
-    else{
-      const n=Number(end);
-      if(!best||n>Number(best.name.split("_")[1].split("-")[1]))best=f;
-    }
-  });
-  return best;
-}
-
 function createCountryCard(country,index){
   const card=document.createElement("div");
   card.className="country-card";
@@ -141,7 +140,6 @@ function createCountryCard(country,index){
 
   const img=document.createElement("img");
   img.className="country-flag";
-  img.src="";
 
   fetchFlagFiles(country["Country"]).then(files=>{
     const current=getCurrentFlag(files);
@@ -164,7 +162,6 @@ function createCountryCard(country,index){
     document.querySelectorAll(".country-card.active").forEach(e=>e.classList.remove("active"));
     card.classList.add("active");
     renderCountryDetails(country);
-    card.scrollIntoView({behavior:"smooth",block:"center"});
   };
 
   return card;
@@ -195,7 +192,7 @@ async function renderCountryDetails(country){
 
   const main=document.createElement("img");
   main.className="details-flag";
-  main.src=current?current.download_url:"";
+  if(current)main.src=current.download_url;
   wrap.appendChild(main);
 
   header.appendChild(wrap);
@@ -243,27 +240,13 @@ async function renderCountryDetails(country){
       else borders.forEach(b=>{
         const span=document.createElement("span");
         span.textContent=b.replace(/_/g," ");
-        span.onclick=()=>{
-          const target=allCountries.find(c=>c["Country"].toLowerCase()===span.textContent.toLowerCase());
-          if(target){
-            const idx=allCountries.indexOf(target);
-            const card=document.querySelector(`.country-card[data-index="${idx}"]`);
-            document.querySelectorAll(".country-card.active").forEach(e=>e.classList.remove("active"));
-            if(card){
-              card.classList.add("active");
-              card.scrollIntoView({behavior:"smooth",block:"center"});
-            }
-            renderCountryDetails(target);
-          }
-        };
         value.appendChild(span);
       });
 
     } else if(field.languages){
       value.classList.add("borders");
       const langs=(field.value||"").split(/\s+/).filter(Boolean);
-      if(!langs.length)value.textContent="None";
-      else langs.forEach(l=>{
+      langs.forEach(l=>{
         const span=document.createElement("span");
         span.textContent=l.replace(/_/g," ");
         value.appendChild(span);
