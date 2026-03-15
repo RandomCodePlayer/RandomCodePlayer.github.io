@@ -40,7 +40,7 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 .history-flag{width:140px;max-width:100%;height:auto;object-fit:contain;border-radius:.35rem;border:1px solid #1f2937;background:#020617}
 .history-text{display:flex;flex-direction:column;font-size:.85rem}
 .history-range{color:#e5e7eb}
-.history-dynasty{color:#9ca3af;font-size:.8rem}
+.history-owner{color:#9ca3af;font-size:.8rem}
 @media(max-width:800px){
 .container{flex-direction:column;height:auto}
 .sidebar{width:100%;max-height:260px;border-right:none;border-bottom:1px solid #1f2937}
@@ -69,7 +69,8 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 
 <script>
 const CSV_URL="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Data/CountryData.csv";
-const FLAG_ROOT="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Flags/CountryFlags/";
+const API_ROOT="https://api.github.com/repos/RandomCodePlayer/FlagFinderData/contents/Flags/CountryFlags/";
+const RAW_ROOT="https://raw.githubusercontent.com/RandomCodePlayer/FlagFinderData/refs/heads/main/Flags/CountryFlags/";
 
 async function fetchCSV(url){
   const res=await fetch(url);
@@ -99,13 +100,39 @@ function parseCSV(text){
   return rows;
 }
 
-async function fetchFlagList(country){
+async function fetchFlagFiles(country){
   const folder=country.replace(/ /g,"-");
-  const api=`https://api.github.com/repos/RandomCodePlayer/FlagFinderData/contents/Flags/CountryFlags/${folder}/Historical`;
-  const res=await fetch(api);
+  const url=API_ROOT+country+"/Historical";
+  const res=await fetch(url);
   if(!res.ok)return[];
   const data=await res.json();
-  return data.filter(f=>f.name.startsWith(folder) && f.name.endsWith(".webp")).map(f=>f.download_url);
+  return data.filter(f=>f.name.startsWith(folder+"_")&&f.name.endsWith(".webp"));
+}
+
+function parseFlagName(name){
+  const base=name.replace(".webp","");
+  const parts=base.split("_");
+  const range=parts[1];
+  const owner=parts[2]||"";
+  const years=range.replace("-", "–");
+  const ownerClean=owner.replace(/-/g," ");
+  return{years,owner:ownerClean};
+}
+
+function getCurrentFlag(files){
+  let best=null;
+  files.forEach(f=>{
+    const base=f.name.replace(".webp","");
+    const parts=base.split("_");
+    const range=parts[1];
+    const end=range.split("-")[1];
+    if(end==="Present")best=f;
+    else{
+      const n=Number(end);
+      if(!best||n>Number(best.name.split("_")[1].split("-")[1]))best=f;
+    }
+  });
+  return best;
 }
 
 function createCountryCard(country,index){
@@ -115,7 +142,12 @@ function createCountryCard(country,index){
 
   const img=document.createElement("img");
   img.className="country-flag";
-  img.src=FLAG_ROOT+country["Country"]+"/Historical/"+country["Country"].replace(/ /g,"-")+".webp";
+  img.src="";
+
+  fetchFlagFiles(country["Country"]).then(files=>{
+    const current=getCurrentFlag(files);
+    if(current)img.src=current.download_url;
+  });
 
   const name=document.createElement("div");
   name.className="country-name";
@@ -153,16 +185,19 @@ async function renderCountryDetails(country){
   const container=document.getElementById("country-details");
   container.innerHTML="";
 
+  const files=await fetchFlagFiles(country["Country"]);
+  const current=getCurrentFlag(files);
+
   const header=document.createElement("div");
   header.className="details-header";
 
   const wrap=document.createElement("div");
   wrap.className="flag-wrapper";
 
-  const mainFlag=document.createElement("img");
-  mainFlag.className="details-flag";
-  mainFlag.src=FLAG_ROOT+country["Country"]+"/Historical/"+country["Country"].replace(/ /g,"-")+".webp";
-  wrap.appendChild(mainFlag);
+  const main=document.createElement("img");
+  main.className="details-flag";
+  main.src=current?current.download_url:"";
+  wrap.appendChild(main);
 
   header.appendChild(wrap);
 
@@ -253,8 +288,13 @@ async function renderCountryDetails(country){
   container.appendChild(header);
   container.appendChild(grid);
 
-  const history=await fetchFlagList(country["Country"]);
-  if(history.length){
+  const sorted=files.sort((a,b)=>{
+    const ay=parseInt(a.name.split("_")[1].split("-")[0]);
+    const by=parseInt(b.name.split("_")[1].split("-")[0]);
+    return ay-by;
+  });
+
+  if(sorted.length){
     const title=document.createElement("h3");
     title.className="history-section-title";
     title.textContent="Historical Flags";
@@ -262,22 +302,31 @@ async function renderCountryDetails(country){
     const list=document.createElement("div");
     list.className="history-grid";
 
-    history.forEach(url=>{
+    sorted.forEach(f=>{
+      const meta=parseFlagName(f.name);
+
       const item=document.createElement("div");
       item.className="history-item";
 
       const img=document.createElement("img");
       img.className="history-flag";
-      img.src=url;
+      img.src=f.download_url;
 
       const text=document.createElement("div");
       text.className="history-text";
 
       const range=document.createElement("div");
       range.className="history-range";
-      range.textContent=url.split("/").pop().replace(".webp","");
+      range.textContent=meta.years;
 
       text.appendChild(range);
+
+      if(meta.owner){
+        const owner=document.createElement("div");
+        owner.className="history-owner";
+        owner.textContent=meta.owner;
+        text.appendChild(owner);
+      }
 
       item.appendChild(img);
       item.appendChild(text);
