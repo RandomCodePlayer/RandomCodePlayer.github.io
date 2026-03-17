@@ -126,7 +126,7 @@ function parseCSV(text){
   return rows;
 }
 
-function createCountryCard(country,index){
+async function createCountryCard(country,index){
   const card=document.createElement("div");
   card.className="country-card";
   card.dataset.index=index;
@@ -134,10 +134,9 @@ function createCountryCard(country,index){
   const img=document.createElement("img");
   img.className="country-flag";
 
-  fetchFlagFiles(country["Country"]).then(files=>{
-    const current=getCurrentFlag(files);
-    if(current)img.src=current.download_url;
-  });
+  const files=await fetchFlagFiles(country["Country"]);
+  const current=getCurrentFlag(files);
+  if(current)img.src=current.download_url;
 
   const name=document.createElement("div");
   name.className="country-name";
@@ -315,15 +314,18 @@ async function renderCountryDetails(country){
 
 let allCountries=[];
 
-function renderCountryList(filter){
+async function renderCountryList(filter){
   const list=document.getElementById("country-list");
   list.innerHTML="";
   const q=(filter||"").toLowerCase();
-  allCountries.forEach((c,i)=>{
+
+  for(let i=0;i<allCountries.length;i++){
+    const c=allCountries[i];
     if(!q||c["Country"].toLowerCase().includes(q)){
-      list.appendChild(createCountryCard(c,i));
+      const card=await createCountryCard(c,i);
+      list.appendChild(card);
     }
-  });
+  }
 }
 
 async function init(){
