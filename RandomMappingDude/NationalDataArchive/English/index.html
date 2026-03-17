@@ -82,10 +82,14 @@ async function fetchFlagFiles(country){
 function getCurrentFlag(files){
   return files
     .map(f => {
-      const parts = f.name.split("_")[1].split("-");
-      const end = parts[1].replace(".webp", "");
+      const name = f.name.replace(".webp", "");
+      const yearPart = name.split("_")[1];
+      if (!yearPart) return { file: f, endYear: -1 };
+
+      const end = yearPart.split("-")[1];
       const endYear = end === "Present" ? 9999 : parseInt(end);
-      return { file: f, endYear };
+
+      return { file: f, endYear: isNaN(endYear) ? -1 : endYear };
     })
     .sort((a, b) => b.endYear - a.endYear)[0]?.file || null;
 }
