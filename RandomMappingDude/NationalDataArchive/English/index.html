@@ -126,17 +126,14 @@ function parseCSV(text){
   return rows;
 }
 
-async function createCountryCard(country,index){
+function createCountryCard(country,index){
   const card=document.createElement("div");
   card.className="country-card";
   card.dataset.index=index;
 
   const img=document.createElement("img");
   img.className="country-flag";
-
-  const files=await fetchFlagFiles(country["Country"]);
-  const current=getCurrentFlag(files);
-  if(current)img.src=current.download_url;
+  img.src="";
 
   const name=document.createElement("div");
   name.className="country-name";
@@ -149,6 +146,11 @@ async function createCountryCard(country,index){
   card.appendChild(img);
   card.appendChild(name);
   card.appendChild(official);
+
+  fetchFlagFiles(country["Country"]).then(files=>{
+    const newest=getCurrentFlag(files);
+    if(newest) img.src=newest.download_url;
+  });
 
   card.onclick=()=>{
     document.querySelectorAll(".country-card.active").forEach(e=>e.classList.remove("active"));
@@ -322,8 +324,7 @@ async function renderCountryList(filter){
   for(let i=0;i<allCountries.length;i++){
     const c=allCountries[i];
     if(!q||c["Country"].toLowerCase().includes(q)){
-      const card=await createCountryCard(c,i);
-      list.appendChild(card);
+      list.appendChild(createCountryCard(c,i));
     }
   }
 }
