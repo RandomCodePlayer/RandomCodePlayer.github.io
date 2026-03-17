@@ -127,14 +127,15 @@ function parseCSV(text){
   return rows;
 }
 
-function createCountryCard(country,index){
+function createCountryCard(country, index){
   const card=document.createElement("div");
   card.className="country-card";
   card.dataset.index=index;
 
   const img=document.createElement("img");
   img.className="country-flag";
-  img.src="";
+
+  img.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+X2S0AAAAASUVORK5CYII=";
 
   const name=document.createElement("div");
   name.className="country-name";
