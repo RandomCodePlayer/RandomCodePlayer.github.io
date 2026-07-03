@@ -61,7 +61,7 @@ header h1{font-size:1rem;margin:0;letter-spacing:.08em;text-transform:uppercase;
 </aside>
 
 <main class="content" id="country-details">
-<p class="placeholder">Select a country from the list to view its full data.</p>
+<p class="placeholder">Select a country from the list to view its data.</p>
 </main>
 </div>
 
@@ -171,6 +171,7 @@ function shortenNumber(num){
   num=Number(num);
   if(isNaN(num))return num;
   const abs=Math.abs(num);
+  if(abs>=1_000_000_000_000)return(num/1_000_000_000_000).toFixed(1).replace(/\.0$/,"")+" Trillion";
   if(abs>=1_000_000_000)return(num/1_000_000_000).toFixed(1).replace(/\.0$/,"")+" Billion";
   if(abs>=1_000_000)return(num/1_000_000).toFixed(1).replace(/\.0$/,"")+" Million";
   if(abs>=1_000)return(num/1_000).toFixed(1).replace(/\.0$/,"")+" Thousand";
